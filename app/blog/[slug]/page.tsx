@@ -61,6 +61,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         style={{
           maxWidth: '800px',
           margin: '0 auto',
+          paddingTop: 'clamp(88px, 10vw, 120px)',
           paddingLeft: 'clamp(20px, 5vw, 40px)',
           paddingRight: 'clamp(20px, 5vw, 40px)',
           paddingBottom: '120px',
@@ -68,7 +69,7 @@ export default async function BlogPostPage({ params }: PageProps) {
       >
         <Link
           href="/#blog"
-          className="font-body inline-block pt-10 mb-12 text-[14px] text-white/40 hover:text-white/80 transition-colors"
+          className="font-body inline-block mb-12 text-[14px] text-white/40 hover:text-white/80 transition-colors"
         >
           ← Voltar ao Blog
         </Link>
