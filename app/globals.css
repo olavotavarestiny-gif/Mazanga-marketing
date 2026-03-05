@@ -1,26 +1,263 @@
 @import "tailwindcss";
 
+/* ============================================
+   MAZANGA MARKETING — CSS VARIABLES
+   ============================================ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Cores principais */
+  --orange: #FF5D00;
+  --blue: #008FCD;
+  --purple: #8C0DC2;
+  --black: #000000;
+  --white: #FFFFFF;
+
+  /* Variações de fundo */
+  --bg-primary: #000000;
+  --bg-surface: #0A0A0A;
+  --bg-elevated: #111111;
+  --bg-subtle: #1A1A1A;
+
+  /* Texto */
+  --text-primary: #FFFFFF;
+  --text-secondary: #A0A0A0;
+  --text-muted: #606060;
+
+  /* Gradientes de marca */
+  --gradient-brand: linear-gradient(135deg, #FF5D00, #8C0DC2);
+  --gradient-tech: linear-gradient(135deg, #008FCD, #8C0DC2);
+  --gradient-hero: linear-gradient(135deg, #FF5D00 0%, #8C0DC2 50%, #008FCD 100%);
+
+  /* Glow effects */
+  --glow-orange: 0 0 40px rgba(255, 93, 0, 0.3);
+  --glow-blue: 0 0 40px rgba(0, 143, 205, 0.3);
+  --glow-purple: 0 0 40px rgba(140, 13, 194, 0.3);
 }
 
+/* ============================================
+   TAILWIND v4 THEME EXTENSIONS
+   ============================================ */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Fontes */
+  --font-display: var(--font-syne), sans-serif;
+  --font-body: var(--font-outfit), sans-serif;
+
+  /* Cores de marca */
+  --color-brand-orange: #FF5D00;
+  --color-brand-blue: #008FCD;
+  --color-brand-purple: #8C0DC2;
+
+  /* Fundos */
+  --color-bg-primary: #000000;
+  --color-bg-surface: #0A0A0A;
+  --color-bg-elevated: #111111;
+  --color-bg-subtle: #1A1A1A;
+
+  /* Texto */
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #A0A0A0;
+  --color-text-muted: #606060;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ============================================
+   RESET & BASE
+   ============================================ */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+/* Font family assignments */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+/* ============================================
+   KEYFRAMES
+   ============================================ */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes marqueeReverse {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: var(--glow-orange); }
+  50% { box-shadow: 0 0 60px rgba(255, 93, 0, 0.5); }
+}
+
+@keyframes bounce-down {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(8px); opacity: 0.5; }
+}
+
+@keyframes floatOrb1 {
+  0%   { transform: translate(0px, 0px) scale(1); opacity: 0.8; }
+  33%  { transform: translate(40px, -30px) scale(1.08); opacity: 1; }
+  66%  { transform: translate(-20px, 50px) scale(0.95); opacity: 0.7; }
+  100% { transform: translate(0px, 0px) scale(1); opacity: 0.8; }
+}
+
+@keyframes floatOrb2 {
+  0%   { transform: translate(0px, 0px) scale(1); opacity: 0.6; }
+  33%  { transform: translate(-50px, 30px) scale(1.1); opacity: 0.9; }
+  66%  { transform: translate(30px, -40px) scale(0.92); opacity: 0.7; }
+  100% { transform: translate(0px, 0px) scale(1); opacity: 0.6; }
+}
+
+@keyframes floatOrb3 {
+  0%   { transform: translate(0px, 0px) scale(1); }
+  50%  { transform: translate(25px, -35px) scale(1.06); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(34,197,94,0.4); }
+  50%       { opacity: 0.8; box-shadow: 0 0 0 5px rgba(34,197,94,0); }
+}
+
+/* ============================================
+   UTILITY CLASSES MAZANGA
+   ============================================ */
+.gradient-text {
+  background: linear-gradient(90deg, #7C3AED, #F97316, #3B82F6, #7C3AED);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 6s ease infinite;
+  color: #7C3AED;
+}
+
+.gradient-text-brand {
+  background: var(--gradient-brand);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 4s ease infinite;
+}
+
+.gradient-border {
+  position: relative;
+  border: 1px solid transparent;
+  background-clip: padding-box;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: var(--gradient-brand);
+  z-index: -1;
+}
+
+.glow-button {
+  box-shadow: var(--glow-orange);
+  transition: box-shadow 0.3s ease;
+}
+
+.glow-button:hover {
+  box-shadow: 0 0 60px rgba(255, 93, 0, 0.5), 0 0 100px rgba(255, 93, 0, 0.2);
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.grain-overlay::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.025;
+}
+
+.marquee-container {
+  overflow: hidden;
+  width: 100%;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+.marquee-track-reverse {
+  display: flex;
+  width: max-content;
+  animation: marqueeReverse 30s linear infinite;
+}
+
+.marquee-container:hover .marquee-track,
+.marquee-container:hover .marquee-track-reverse {
+  animation-play-state: paused;
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--bg-subtle);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* ============================================
+   SELECTION
+   ============================================ */
+::selection {
+  background: rgba(255, 93, 0, 0.3);
+  color: var(--white);
 }
