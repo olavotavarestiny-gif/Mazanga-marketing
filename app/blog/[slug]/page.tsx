@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { blogPosts, getBlogPostBySlug } from '@/lib/blog-posts'
+import PageGradientBackground from '@/components/layout/PageGradientBackground'
 
 type PageProps = {
   params: Promise<{
@@ -56,7 +57,8 @@ export default async function BlogPostPage({ params }: PageProps) {
   }
 
   return (
-    <section style={{ background: '#000000' }}>
+    <PageGradientBackground>
+      <section>
       <article
         style={{
           maxWidth: '800px',
@@ -270,6 +272,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           </Link>
         </div>
       </article>
-    </section>
+      </section>
+    </PageGradientBackground>
   )
 }

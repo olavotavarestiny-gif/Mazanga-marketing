@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Blog from '@/components/home/Blog'
+import PageGradientBackground from '@/components/layout/PageGradientBackground'
 
 export const metadata: Metadata = {
   title: 'Blog | Mazanga Marketing',
@@ -8,5 +9,9 @@ export const metadata: Metadata = {
 }
 
 export default function BlogPage() {
-  return <Blog />
+  return (
+    <PageGradientBackground>
+      <Blog />
+    </PageGradientBackground>
+  )
 }
