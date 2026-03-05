@@ -4,7 +4,6 @@ import Solucao from '@/components/home/Solucao'
 import Processo from '@/components/home/Processo'
 import Numeros from '@/components/home/Numeros'
 import Diferencial from '@/components/home/Diferencial'
-import Blog from '@/components/home/Blog'
 import CtaFinal from '@/components/home/CtaFinal'
 
 export default function Home() {
@@ -16,7 +15,6 @@ export default function Home() {
       <Processo />
       <Numeros />
       <Diferencial />
-      <Blog />
       <CtaFinal />
     </>
   )

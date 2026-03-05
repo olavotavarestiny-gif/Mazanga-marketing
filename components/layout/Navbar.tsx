@@ -37,6 +37,11 @@ export default function Navbar() {
     return () => { document.body.style.overflow = '' }
   }, [menuOpen])
 
+  const isActive = (href: string) => {
+    if (href === '/') return pathname === '/'
+    return pathname === href || pathname.startsWith(`${href}/`)
+  }
+
   return (
     <>
       <motion.header
@@ -72,30 +77,33 @@ export default function Navbar() {
 
             {/* Desktop Nav — grouped with logo on the left */}
             <nav className="hidden lg:flex items-center gap-6" style={{ marginLeft: '40px' }}>
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="font-body font-500 transition-colors duration-200 relative"
-                  style={{
-                    fontSize: '14px',
-                    color: pathname === link.href ? '#FFFFFF' : 'rgba(255,255,255,0.7)',
-                  }}
-                  onMouseEnter={e => { e.currentTarget.style.color = '#FFFFFF' }}
-                  onMouseLeave={e => {
-                    if (pathname !== link.href) e.currentTarget.style.color = 'rgba(255,255,255,0.7)'
-                  }}
-                >
-                  {link.label}
-                  <span
-                    className="absolute -bottom-0.5 left-0 h-px transition-all duration-300"
+              {navLinks.map((link) => {
+                const linkActive = isActive(link.href)
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="font-body font-500 transition-colors duration-200 relative"
                     style={{
-                      background: 'linear-gradient(90deg, #008FCD, #8C0DC2)',
-                      width: pathname === link.href ? '100%' : '0%',
+                      fontSize: '14px',
+                      color: linkActive ? '#FFFFFF' : 'rgba(255,255,255,0.7)',
                     }}
-                  />
-                </Link>
-              ))}
+                    onMouseEnter={e => { e.currentTarget.style.color = '#FFFFFF' }}
+                    onMouseLeave={e => {
+                      if (!linkActive) e.currentTarget.style.color = 'rgba(255,255,255,0.7)'
+                    }}
+                  >
+                    {link.label}
+                    <span
+                      className="absolute -bottom-0.5 left-0 h-px transition-all duration-300"
+                      style={{
+                        background: 'linear-gradient(90deg, #008FCD, #8C0DC2)',
+                        width: linkActive ? '100%' : '0%',
+                      }}
+                    />
+                  </Link>
+                )
+              })}
             </nav>
 
             {/* Desktop CTA — pushed to right */}
@@ -177,7 +185,7 @@ export default function Navbar() {
                     href={link.href}
                     className={cn(
                       'block font-display font-700 text-4xl py-3 transition-colors duration-200',
-                      pathname === link.href
+                      isActive(link.href)
                         ? 'gradient-text'
                         : 'text-white/90 hover:text-white'
                     )}
