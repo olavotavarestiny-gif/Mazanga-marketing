@@ -69,7 +69,7 @@ export default async function BlogPostPage({ params }: PageProps) {
       >
         <Link
           href="/#blog"
-          className="font-body inline-block mb-12 text-[14px] text-white/40 hover:text-white/80 transition-colors"
+          className="font-body inline-block mb-16 text-[14px] text-white/40 hover:text-white/80 transition-colors"
         >
           ← Voltar ao Blog
         </Link>
