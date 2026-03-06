@@ -59,19 +59,10 @@ export default async function BlogPostPage({ params }: PageProps) {
   return (
     <PageGradientBackground>
       <section>
-      <article
-        style={{
-          maxWidth: '800px',
-          margin: '0 auto',
-          paddingTop: 'clamp(88px, 10vw, 120px)',
-          paddingLeft: 'clamp(20px, 5vw, 40px)',
-          paddingRight: 'clamp(20px, 5vw, 40px)',
-          paddingBottom: '120px',
-        }}
-      >
+      <article className="article-shell">
         <Link
-          href="/#blog"
-          className="font-body block w-fit mb-10 text-[14px] text-white/40 hover:text-white/80 transition-colors"
+          href="/blog"
+          className="font-body block w-fit mb-12 text-[14px] text-white/40 hover:text-white/80 transition-colors"
         >
           ← Voltar ao Blog
         </Link>
@@ -107,6 +98,7 @@ export default async function BlogPostPage({ params }: PageProps) {
             display: 'flex',
             alignItems: 'center',
             gap: '20px',
+            flexWrap: 'wrap',
             fontSize: '13px',
             color: 'rgba(255, 255, 255, 0.3)',
             marginBottom: '48px',

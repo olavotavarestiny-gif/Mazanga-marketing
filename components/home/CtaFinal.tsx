@@ -8,7 +8,7 @@ const ease = [0.22, 1, 0.36, 1] as [number, number, number, number]
 
 export default function CtaFinal() {
   return (
-    <section className="relative overflow-hidden" style={{ background: '#000000', padding: '120px 0' }}>
+    <section className="relative overflow-hidden section-shell" style={{ background: '#000000' }}>
       {/* Glow */}
       <div
         className="absolute inset-0 pointer-events-none"
@@ -22,8 +22,8 @@ export default function CtaFinal() {
         style={{
           maxWidth: '1200px',
           margin: '0 auto',
-          paddingLeft: '80px',
-          paddingRight: '80px',
+          paddingLeft: 'var(--shell-x)',
+          paddingRight: 'var(--shell-x)',
         }}
       >
         <motion.div

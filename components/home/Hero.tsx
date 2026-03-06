@@ -18,7 +18,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.2, ease: easeOut }}
-        className="absolute pointer-events-none"
+        className="absolute pointer-events-none mobile-orb"
         style={{
           top: '10%',
           right: '-10%',
@@ -37,7 +37,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.2, delay: 0.1, ease: easeOut }}
-        className="absolute pointer-events-none"
+        className="absolute pointer-events-none mobile-orb"
         style={{
           bottom: '5%',
           left: '-5%',
@@ -56,7 +56,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.2, delay: 0.2, ease: easeOut }}
-        className="absolute pointer-events-none"
+        className="absolute pointer-events-none mobile-orb"
         style={{
           top: '50%',
           left: '50%',
@@ -84,17 +84,15 @@ export default function Hero() {
 
       {/* Content */}
       <div
-        className="relative w-full flex items-center"
+        className="relative w-full grid grid-cols-1 lg:grid-cols-2 items-center"
         style={{
           maxWidth: '1280px',
           margin: '0 auto',
-          padding: 'clamp(24px, 8vw, 140px)',
-          paddingTop: 'calc(72px + clamp(24px, 8vw, 140px))',
-          paddingBottom: 'clamp(24px, 8vw, 140px)',
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gap: '60px',
-          alignItems: 'center',
+          paddingLeft: 'clamp(16px, 6vw, 140px)',
+          paddingRight: 'clamp(16px, 6vw, 140px)',
+          paddingTop: 'calc(72px + clamp(20px, 8vw, 120px))',
+          paddingBottom: 'clamp(32px, 8vw, 120px)',
+          gap: 'clamp(28px, 6vw, 60px)',
           zIndex: 10,
         }}
       >
@@ -153,7 +151,7 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.2, ease: easeOut }}
             className="font-display font-800"
             style={{
-              fontSize: 'clamp(38px, 4.2vw, 62px)',
+              fontSize: 'clamp(32px, 8.5vw, 62px)',
               lineHeight: '1.08',
               letterSpacing: '-0.03em',
               marginBottom: '24px',
@@ -189,19 +187,13 @@ export default function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4, ease: easeOut }}
-            style={{
-              display: 'flex',
-              gap: '16px',
-              alignItems: 'center',
-              marginBottom: '40px',
-              flexWrap: 'wrap',
-            }}
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 sm:items-center mb-9 sm:mb-10"
           >
             <Link
               href="/contacto"
-              className="inline-flex items-center gap-2 font-display font-700 transition-all duration-200"
+              className="inline-flex items-center justify-center gap-2 font-display font-700 transition-all duration-200 w-full sm:w-auto"
               style={{
-                padding: '0 24px',
+                padding: '0 22px',
                 height: '48px',
                 borderRadius: '8px',
                 fontSize: '15px',
@@ -218,14 +210,16 @@ export default function Hero() {
                 e.currentTarget.style.transform = 'translateY(0)'
               }}
             >
-              Agendar Diagnóstico Gratuito →
+              <span className="whitespace-nowrap">
+                Agendar Diagnóstico Gratuito →
+              </span>
             </Link>
 
             <Link
               href="#solucao"
-              className="inline-flex items-center gap-2 font-display font-600 transition-all duration-200"
+              className="inline-flex items-center justify-center gap-2 font-display font-600 transition-all duration-200 w-full sm:w-auto"
               style={{
-                padding: '0 24px',
+                padding: '0 22px',
                 height: '48px',
                 borderRadius: '8px',
                 fontSize: '15px',
@@ -253,8 +247,8 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.5, ease: easeOut }}
             style={{
               display: 'flex',
-              gap: '24px',
-              paddingTop: '24px',
+              gap: '16px',
+              paddingTop: '20px',
               borderTop: '1px solid rgba(241,245,249,0.08)',
               flexWrap: 'wrap',
             }}
@@ -382,7 +376,7 @@ export default function Hero() {
       <motion.div
         animate={{ y: [0, 8, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 pointer-events-none"
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 pointer-events-none hide-on-mobile"
         style={{
           display: 'flex',
           flexDirection: 'column',

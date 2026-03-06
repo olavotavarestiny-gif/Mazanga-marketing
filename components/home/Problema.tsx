@@ -35,19 +35,12 @@ export default function Problema() {
   return (
     <section
       id="problema"
+      className="section-shell"
       style={{
         background: 'transparent',
-        padding: '120px 0',
       }}
     >
-      <div
-        style={{
-          maxWidth: '1200px',
-          margin: '0 auto',
-          paddingLeft: '80px',
-          paddingRight: '80px',
-        }}
-      >
+      <div className="shell-container">
         {/* Label */}
         <motion.p
           initial={{ opacity: 0 }}
@@ -98,21 +91,14 @@ export default function Problema() {
           style={{
             fontSize: '18px',
             color: 'rgba(255,255,255,0.45)',
-            marginBottom: '64px',
+            marginBottom: 'clamp(40px, 7vw, 64px)',
           }}
         >
           Reconheces algum destes sinais?
         </motion.p>
 
         {/* Grid of 6 pain points */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(2, 1fr)',
-            gap: '16px',
-            marginBottom: '24px',
-          }}
-        >
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
           {problems.map((problem, i) => (
             <motion.div
               key={i}
@@ -129,7 +115,7 @@ export default function Problema() {
                 background: 'rgba(255,255,255,0.03)',
                 border: '1px solid rgba(255,255,255,0.07)',
                 borderRadius: '16px',
-                padding: '28px 32px',
+                padding: 'clamp(22px, 4vw, 28px) clamp(20px, 4vw, 32px)',
                 position: 'relative',
                 overflow: 'hidden',
                 transition: 'all 0.3s ease',
@@ -227,14 +213,13 @@ export default function Problema() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-40px' }}
           transition={{ duration: 0.8, delay: 0.6, ease: easeOut }}
+          className="mobile-stack"
           style={{
             width: '100%',
             background: 'linear-gradient(135deg, rgba(140,13,194,0.12) 0%, rgba(255,93,0,0.06) 100%)',
             border: '1px solid rgba(140,13,194,0.25)',
             borderRadius: '20px',
-            padding: '48px 56px',
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
+            padding: 'clamp(26px, 5vw, 48px) clamp(20px, 5vw, 56px)',
             gap: '48px',
             alignItems: 'center',
           }}

@@ -8,7 +8,7 @@ export default function PageGradientBackground({ children }: PageGradientBackgro
   return (
     <div className="relative overflow-hidden" style={{ background: '#000000', minHeight: '100vh' }}>
       <div
-        className="absolute pointer-events-none"
+        className="absolute pointer-events-none mobile-orb"
         style={{
           top: '-140px',
           right: '-180px',
@@ -21,7 +21,7 @@ export default function PageGradientBackground({ children }: PageGradientBackgro
         }}
       />
       <div
-        className="absolute pointer-events-none"
+        className="absolute pointer-events-none mobile-orb"
         style={{
           bottom: '-180px',
           left: '-160px',

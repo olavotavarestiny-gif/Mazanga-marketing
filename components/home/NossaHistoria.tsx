@@ -68,9 +68,10 @@ export default function NossaHistoria() {
   const timelineInView = useInView(timelineLineRef, { once: true, margin: '-60px' })
 
   return (
-    <section style={{ background: 'transparent', padding: '120px 0', position: 'relative', overflow: 'hidden' }}>
+    <section className="section-shell" style={{ background: 'transparent', position: 'relative', overflow: 'hidden' }}>
       {/* Gradient orbs background */}
       <div
+        className="mobile-orb"
         style={{
           position: 'absolute',
           top: '-200px',
@@ -85,6 +86,7 @@ export default function NossaHistoria() {
         }}
       />
       <div
+        className="mobile-orb"
         style={{
           position: 'absolute',
           bottom: '-150px',
@@ -99,6 +101,7 @@ export default function NossaHistoria() {
         }}
       />
       <div
+        className="mobile-orb"
         style={{
           position: 'absolute',
           top: '50%',
@@ -114,7 +117,7 @@ export default function NossaHistoria() {
         }}
       />
 
-      <div style={{ maxWidth: '1200px', margin: '0 auto', paddingLeft: '80px', paddingRight: '80px', position: 'relative', zIndex: 1 }}>
+      <div className="shell-container" style={{ position: 'relative', zIndex: 1 }}>
         {/* BLOCO 1: Label + Title + Subtitle */}
         <motion.p
           initial={{ opacity: 0 }}
@@ -163,9 +166,8 @@ export default function NossaHistoria() {
             fontSize: '18px',
             color: 'rgba(255,255,255,0.45)',
             lineHeight: '1.6',
-            marginBottom: '80px',
             maxWidth: '800px',
-            margin: '0 auto',
+            margin: '0 auto clamp(48px, 8vw, 80px)',
             paddingTop: '16px',
           }}
         >
@@ -180,13 +182,13 @@ export default function NossaHistoria() {
           transition={{ duration: 0.8, ease }}
           style={{
             maxWidth: '800px',
-            margin: '0 auto 96px auto',
+            margin: '0 auto clamp(56px, 8vw, 96px) auto',
             textAlign: 'center',
           }}
         >
           <div
             style={{
-              fontSize: '80px',
+              fontSize: 'clamp(56px, 14vw, 80px)',
               fontFamily: 'Syne, sans-serif',
               background: 'linear-gradient(135deg, #FF5D00, #8C0DC2)',
               WebkitBackgroundClip: 'text',
@@ -203,7 +205,7 @@ export default function NossaHistoria() {
           <p
             className="font-body"
             style={{
-              fontSize: '18px',
+              fontSize: 'clamp(16px, 4.5vw, 18px)',
               color: 'rgba(255,255,255,0.7)',
               lineHeight: '1.9',
               fontStyle: 'italic',
@@ -214,13 +216,14 @@ export default function NossaHistoria() {
         </motion.div>
 
         {/* BLOCO 3: Timeline */}
-        <div style={{ width: '100%', position: 'relative', marginBottom: '96px' }}>
+        <div style={{ width: '100%', position: 'relative', marginBottom: 'clamp(56px, 8vw, 96px)' }}>
           {/* Connecting line */}
           <motion.div
             ref={timelineLineRef}
             initial={{ width: '0%' }}
             animate={timelineInView ? { width: '100%' } : { width: '0%' }}
             transition={{ duration: 1.2, ease: 'easeInOut', delay: 0.2 }}
+            className="hidden lg:block"
             style={{
               position: 'absolute',
               top: '32px',
@@ -232,15 +235,7 @@ export default function NossaHistoria() {
           />
 
           {/* Timeline items */}
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(4, 1fr)',
-              gap: 0,
-              position: 'relative',
-              zIndex: 1,
-            }}
-          >
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0 relative z-[1]">
             {timelineItems.map((item, i) => (
               <div
                 key={i}
@@ -249,7 +244,7 @@ export default function NossaHistoria() {
                   flexDirection: 'column',
                   alignItems: 'center',
                   textAlign: 'center',
-                  padding: '0 16px',
+                  padding: '0 12px',
                 }}
               >
                 {/* Dot */}
@@ -328,11 +323,10 @@ export default function NossaHistoria() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.8, ease }}
+          className="grid grid-cols-1 md:grid-cols-3"
           style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
             gap: '2px',
-            marginBottom: '96px',
+            marginBottom: 'clamp(56px, 8vw, 96px)',
             background: 'rgba(255,255,255,0.04)',
             border: '1px solid rgba(255,255,255,0.07)',
             borderRadius: '24px',
@@ -346,11 +340,12 @@ export default function NossaHistoria() {
           ].map((metric, i) => (
             <div
               key={i}
+              className={i < 2 ? 'md:border-r md:border-white/10' : undefined}
               style={{
-                padding: '48px 40px',
+                padding: 'clamp(28px, 6vw, 48px) clamp(20px, 4vw, 40px)',
                 textAlign: 'center',
                 background: 'transparent',
-                borderRight: i < 2 ? '1px solid rgba(255,255,255,0.06)' : 'none',
+                borderBottom: i < 2 ? '1px solid rgba(255,255,255,0.06)' : 'none',
               }}
             >
               <p
@@ -394,7 +389,7 @@ export default function NossaHistoria() {
             background: 'linear-gradient(135deg, rgba(255,93,0,0.07) 0%, rgba(140,13,194,0.07) 100%)',
             border: '1px solid rgba(255,93,0,0.15)',
             borderRadius: '24px',
-            padding: '56px 64px',
+            padding: 'clamp(30px, 6vw, 56px) clamp(22px, 6vw, 64px)',
             textAlign: 'center',
             position: 'relative',
           }}
@@ -402,7 +397,7 @@ export default function NossaHistoria() {
           <p
             className="font-body"
             style={{
-              fontSize: '20px',
+              fontSize: 'clamp(17px, 4.8vw, 20px)',
               color: 'rgba(255,255,255,0.85)',
               lineHeight: '1.8',
               fontStyle: 'italic',

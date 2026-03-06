@@ -21,18 +21,11 @@ export default function ContactoPage() {
     <PageGradientBackground>
       <section
         style={{
-          paddingTop: 'clamp(124px, 14vw, 168px)',
-          paddingBottom: '120px',
+          paddingTop: 'var(--page-top)',
+          paddingBottom: 'var(--shell-y)',
         }}
       >
-        <div
-          style={{
-            maxWidth: '1200px',
-            margin: '0 auto',
-            paddingLeft: 'clamp(24px, 6vw, 80px)',
-            paddingRight: 'clamp(24px, 6vw, 80px)',
-          }}
-        >
+        <div className="shell-container">
           <span
             className="font-display"
             style={{
@@ -54,7 +47,7 @@ export default function ContactoPage() {
             className="font-display"
             style={{
               fontWeight: 700,
-              fontSize: 'clamp(36px, 5vw, 62px)',
+              fontSize: 'clamp(32px, 8vw, 62px)',
               lineHeight: 1.08,
               color: '#FFFFFF',
               letterSpacing: '-0.02em',
@@ -78,11 +71,11 @@ export default function ContactoPage() {
           <p
             className="font-body"
             style={{
-              fontSize: '18px',
+              fontSize: 'clamp(16px, 4.5vw, 18px)',
               color: 'rgba(255,255,255,0.5)',
               lineHeight: 1.7,
               maxWidth: '760px',
-              marginBottom: '72px',
+              marginBottom: 'clamp(36px, 7vw, 72px)',
             }}
           >
             Preenche o formulário e a nossa equipa entra em contacto em menos de 24h com uma proposta
@@ -100,10 +93,10 @@ export default function ContactoPage() {
                 style={{
                   background: 'rgba(255,255,255,0.03)',
                   borderColor: 'rgba(255,255,255,0.09)',
-                  padding: '28px',
+                  padding: 'clamp(20px, 4vw, 28px)',
                 }}
               >
-                <h3 className="font-display font-700 text-white text-[28px] leading-tight mb-4">
+                <h3 className="font-display font-700 text-white text-[22px] sm:text-[24px] lg:text-[28px] leading-tight mb-4">
                   O que acontece depois?
                 </h3>
                 <ul className="space-y-3.5">
@@ -121,10 +114,10 @@ export default function ContactoPage() {
                 style={{
                   background: 'rgba(255,255,255,0.03)',
                   borderColor: 'rgba(255,255,255,0.09)',
-                  padding: '32px',
+                  padding: 'clamp(22px, 5vw, 32px)',
                 }}
               >
-                <h3 className="font-display font-700 text-white text-[24px] leading-tight mb-2">
+                <h3 className="font-display font-700 text-white text-[20px] sm:text-[22px] lg:text-[24px] leading-tight mb-2">
                   Preferes falar directamente?
                 </h3>
                 <p className="font-body text-[15px] text-white/55 leading-relaxed mb-6">

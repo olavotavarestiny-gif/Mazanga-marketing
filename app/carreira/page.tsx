@@ -12,18 +12,11 @@ export default function CarreiraPage() {
     <PageGradientBackground>
       <section
         style={{
-          paddingTop: 'clamp(124px, 14vw, 168px)',
-          paddingBottom: '120px',
+          paddingTop: 'var(--page-top)',
+          paddingBottom: 'var(--shell-y)',
         }}
       >
-        <div
-          style={{
-            maxWidth: '1200px',
-            margin: '0 auto',
-            paddingLeft: 'clamp(24px, 6vw, 80px)',
-            paddingRight: 'clamp(24px, 6vw, 80px)',
-          }}
-        >
+        <div className="shell-container">
           <span
             className="font-display"
             style={{
@@ -45,7 +38,7 @@ export default function CarreiraPage() {
             className="font-display"
             style={{
               fontWeight: 700,
-              fontSize: 'clamp(36px, 5vw, 62px)',
+              fontSize: 'clamp(32px, 8vw, 62px)',
               lineHeight: 1.1,
               color: '#FFFFFF',
               letterSpacing: '-0.02em',
@@ -59,11 +52,11 @@ export default function CarreiraPage() {
           <p
             className="font-body"
             style={{
-              fontSize: '18px',
+              fontSize: 'clamp(16px, 4.5vw, 18px)',
               color: 'rgba(255,255,255,0.52)',
               lineHeight: 1.75,
               maxWidth: '760px',
-              marginBottom: '56px',
+              marginBottom: 'clamp(36px, 7vw, 56px)',
             }}
           >
             Neste momento não temos vagas disponíveis. Ainda assim, estamos sempre atentos a perfis

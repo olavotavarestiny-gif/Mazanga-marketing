@@ -55,8 +55,8 @@ const inputBase =
 const textareaBase =
   'w-full bg-white/[0.02] border border-white/10 rounded-xl font-body text-[15px] text-white placeholder:text-white/30 focus:outline-none focus:border-brand-orange/55 transition-colors duration-200 resize-none'
 const errorBase = 'font-body text-xs text-red-400 mt-1.5'
-const controlStyle = { paddingLeft: '22px', paddingRight: '22px' }
-const textareaStyle = { padding: '18px 22px' }
+const controlStyle = { paddingLeft: '20px', paddingRight: '20px' }
+const textareaStyle = { padding: '18px 20px' }
 
 export default function LeadForm() {
   const [submitted, setSubmitted] = useState(false)
@@ -176,7 +176,7 @@ export default function LeadForm() {
       >
         Pedido de proposta
       </p>
-      <h2 className="font-display font-700 text-white text-[30px] leading-tight mb-12">Dados do pedido</h2>
+      <h2 className="font-display font-700 text-white text-[24px] sm:text-[28px] lg:text-[30px] leading-tight mb-9 sm:mb-12">Dados do pedido</h2>
 
       <input
         {...register('website')}
@@ -193,7 +193,7 @@ export default function LeadForm() {
         }}
       />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-8 mb-9">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-7 lg:gap-x-10 gap-y-7 sm:gap-y-8 mb-8 sm:mb-9">
         <div>
           <label className={labelBase}>Nome completo *</label>
           <input
@@ -252,7 +252,7 @@ export default function LeadForm() {
         {errors.email && <p className={errorBase}>{errors.email.message}</p>}
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-8 mb-9">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-7 lg:gap-x-10 gap-y-7 sm:gap-y-8 mb-8 sm:mb-9">
         <div>
           <label className={labelBase}>Facturamento anual *</label>
           <select

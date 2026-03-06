@@ -61,7 +61,7 @@ export default function Navbar() {
       >
         <div
           className="max-w-[1280px] mx-auto"
-          style={{ paddingLeft: 'clamp(24px, 8vw, 140px)', paddingRight: 'clamp(24px, 8vw, 140px)' }}
+          style={{ paddingLeft: 'clamp(16px, 6vw, 140px)', paddingRight: 'clamp(16px, 6vw, 140px)' }}
         >
           <div className="flex items-center h-[72px]">
             {/* Logo */}
@@ -157,7 +157,7 @@ export default function Navbar() {
             className="fixed inset-0 z-40 lg:hidden flex flex-col"
             style={{ background: '#000000' }}
           >
-            <div className="flex items-center justify-between h-[72px] px-6">
+            <div className="flex items-center justify-between h-[72px] px-4 sm:px-6">
               <Link href="/">
                 <Image
                   src="/images/logo/mazanga-logo-white.png"
@@ -176,7 +176,7 @@ export default function Navbar() {
               </button>
             </div>
 
-            <nav className="flex flex-col justify-center flex-1 px-8 gap-2">
+            <nav className="flex flex-col justify-center flex-1 px-6 sm:px-8 gap-2">
               {navLinks.map((link, i) => (
                 <motion.div
                   key={link.href}
@@ -187,7 +187,7 @@ export default function Navbar() {
                   <Link
                     href={link.href}
                     className={cn(
-                      'block font-display font-700 text-4xl py-3 transition-colors duration-200',
+                      'block font-display font-700 text-3xl sm:text-4xl py-2.5 transition-colors duration-200',
                       isActive(link.href)
                         ? 'gradient-text'
                         : 'text-white/90 hover:text-white'
@@ -202,7 +202,7 @@ export default function Navbar() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: navLinks.length * 0.08 + 0.1, duration: 0.4 }}
-                className="mt-8"
+                className="mt-6"
               >
                 <div className="mb-4">
                   <LanguageToggle />
@@ -223,7 +223,7 @@ export default function Navbar() {
               </motion.div>
             </nav>
 
-            <div className="px-8 pb-12 font-body" style={{ fontSize: '13px', color: 'rgba(255,255,255,0.25)' }}>
+            <div className="px-6 sm:px-8 pb-10 sm:pb-12 font-body" style={{ fontSize: '13px', color: 'rgba(255,255,255,0.25)' }}>
               mazanga.digital
             </div>
           </motion.div>

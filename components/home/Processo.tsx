@@ -35,11 +35,11 @@ export default function Processo() {
   return (
     <section
       id="processo"
+      className="section-shell"
       style={{
         position: 'relative',
         overflow: 'hidden',
         background: 'transparent',
-        padding: '120px 0',
       }}
     >
       {/* Orbe laranja — baixo-direito */}
@@ -73,11 +73,8 @@ export default function Processo() {
       />
 
       <div
+        className="shell-container"
         style={{
-          maxWidth: '1200px',
-          margin: '0 auto',
-          paddingLeft: '80px',
-          paddingRight: '80px',
           position: 'relative',
           zIndex: 1,
         }}
@@ -117,121 +114,79 @@ export default function Processo() {
             fontWeight: 700,
             lineHeight: '1.2',
             maxWidth: '700px',
-            margin: '0 auto 80px',
+            margin: '0 auto clamp(40px, 7vw, 80px)',
             fontStyle: 'normal',
           }}
         >
           Da primeira reunião aos primeiros resultados
         </motion.h2>
 
-        {/* Steps — horizontal with arrows */}
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'flex-start',
-            gap: '0',
-            flexWrap: 'wrap',
-          }}
-          className="lg:flex-nowrap"
-        >
+        {/* Steps */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7">
           {steps.map((step, i) => (
-            <div key={step.num} style={{ display: 'flex', alignItems: 'flex-start', gap: '0' }}>
-              {/* Step */}
-              <motion.div
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{
-                  duration: 0.6,
-                  delay: i * 0.1,
-                  ease: easeOut,
-                }}
+            <motion.div
+              key={step.num}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{
+                duration: 0.6,
+                delay: i * 0.1,
+                ease: easeOut,
+              }}
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                textAlign: 'center',
+                position: 'relative',
+              }}
+            >
+              <div
+                className="font-display font-800"
                 style={{
+                  width: '56px',
+                  height: '56px',
+                  borderRadius: '16px',
+                  background: `${step.color}15`,
+                  border: `1px solid ${step.color}30`,
                   display: 'flex',
-                  flexDirection: 'column',
                   alignItems: 'center',
-                  textAlign: 'center',
-                  flex: 1,
-                  minWidth: '200px',
-                  maxWidth: '220px',
-                  position: 'relative',
+                  justifyContent: 'center',
+                  fontSize: '18px',
+                  color: step.color,
+                  marginBottom: '20px',
+                  fontStyle: 'normal',
+                  flexShrink: 0,
                 }}
               >
-                {/* Number box */}
-                <div
-                  className="font-display font-800"
-                  style={{
-                    width: '56px',
-                    height: '56px',
-                    borderRadius: '16px',
-                    background: `${step.color}15`,
-                    border: `1px solid ${step.color}30`,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: '18px',
-                    color: step.color,
-                    marginBottom: '20px',
-                    fontStyle: 'normal',
-                    flexShrink: 0,
-                  }}
-                >
-                  {step.num}
-                </div>
+                {step.num}
+              </div>
 
-                {/* Title */}
-                <p
-                  className="font-display font-700"
-                  style={{
-                    fontSize: '18px',
-                    color: '#FFFFFF',
-                    marginBottom: '12px',
-                    fontStyle: 'normal',
-                  }}
-                >
-                  {step.title}
-                </p>
+              <p
+                className="font-display font-700"
+                style={{
+                  fontSize: '18px',
+                  color: '#FFFFFF',
+                  marginBottom: '12px',
+                  fontStyle: 'normal',
+                }}
+              >
+                {step.title}
+              </p>
 
-                {/* Description */}
-                <p
-                  className="font-body"
-                  style={{
-                    fontSize: '14px',
-                    color: 'rgba(255,255,255,0.5)',
-                    lineHeight: '1.65',
-                    fontWeight: 400,
-                  }}
-                >
-                  {step.desc}
-                </p>
-              </motion.div>
-
-              {/* Arrow after step (except last) */}
-              {i < steps.length - 1 && (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true, margin: '-40px' }}
-                  transition={{
-                    duration: 0.4,
-                    delay: 0.4 + i * 0.1,
-                    ease: easeOut,
-                  }}
-                  className="hidden lg:flex"
-                  style={{
-                    color: 'rgba(255,255,255,0.2)',
-                    fontSize: '20px',
-                    alignItems: 'center',
-                    height: '56px',
-                    flexShrink: 0,
-                    paddingRight: '8px',
-                  }}
-                >
-                  →
-                </motion.div>
-              )}
-            </div>
+              <p
+                className="font-body"
+                style={{
+                  fontSize: '14px',
+                  color: 'rgba(255,255,255,0.5)',
+                  lineHeight: '1.65',
+                  fontWeight: 400,
+                }}
+              >
+                {step.desc}
+              </p>
+            </motion.div>
           ))}
         </div>
       </div>

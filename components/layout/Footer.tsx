@@ -27,10 +27,10 @@ const socials = [
 export default function Footer() {
   return (
     <footer style={{ background: '#050508', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-      <div className="max-w-[1200px] mx-auto" style={{ padding: '64px 20px 32px' }}>
+      <div className="max-w-[1200px] mx-auto" style={{ padding: 'clamp(44px, 8vw, 64px) clamp(16px, 5vw, 20px) 32px' }}>
 
         {/* Grid 4 columns (1 on mobile) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4" style={{ gap: '48px', marginBottom: '48px' }}>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4" style={{ gap: 'clamp(26px, 6vw, 48px)', marginBottom: 'clamp(30px, 6vw, 48px)' }}>
 
           {/* Col 1 — Brand */}
           <div>

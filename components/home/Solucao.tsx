@@ -41,11 +41,11 @@ export default function Solucao() {
   return (
     <section
       id="solucao"
+      className="section-shell"
       style={{
         position: 'relative',
         overflow: 'hidden',
         background: 'transparent',
-        padding: '120px 0',
       }}
     >
       {/* Orbe laranja — baixo-esquerdo */}
@@ -78,14 +78,7 @@ export default function Solucao() {
         }}
       />
 
-      <div
-        style={{
-          maxWidth: '1200px',
-          margin: '0 auto',
-          paddingLeft: '80px',
-          paddingRight: '80px',
-        }}
-      >
+      <div className="shell-container">
         {/* Label */}
         <motion.p
           initial={{ opacity: 0 }}
@@ -138,7 +131,7 @@ export default function Solucao() {
           style={{
             fontSize: '18px',
             color: 'rgba(255,255,255,0.45)',
-            marginBottom: '100px',
+            marginBottom: 'clamp(44px, 8vw, 100px)',
             fontWeight: 400,
           }}
         >
@@ -147,15 +140,10 @@ export default function Solucao() {
 
         {/* Staircase Container */}
         <div
+          className="relative w-full mobile-stack lg:flex lg:items-end lg:justify-center lg:h-[420px]"
           style={{
-            width: '100%',
-            position: 'relative',
-            display: 'flex',
-            alignItems: 'flex-end',
-            justifyContent: 'center',
             gap: '0',
-            height: '420px',
-            marginBottom: '56px',
+            marginBottom: 'clamp(36px, 7vw, 56px)',
           }}
         >
           {/* Progress line background */}
@@ -164,6 +152,7 @@ export default function Solucao() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true, margin: '-40px' }}
             transition={{ duration: 1.2, delay: 0.2, ease: easeOut }}
+            className="hidden lg:block"
             style={{
               position: 'absolute',
               bottom: '0',
@@ -177,7 +166,7 @@ export default function Solucao() {
 
           {/* Steps */}
           {steps.map((step, i) => (
-            <div key={i} style={{ position: 'relative', width: 'calc(33.33% - 2px)' }}>
+            <div key={i} className="mobile-step-wrap lg:flex-1" style={{ position: 'relative' }}>
               {/* Step div */}
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
@@ -188,6 +177,7 @@ export default function Solucao() {
                   delay: i * 0.25,
                   ease: easeOut,
                 }}
+                className="mobile-step-card"
                 style={{
                   height: step.height,
                   background: step.bgGradient,
@@ -286,7 +276,6 @@ export default function Solucao() {
                         ? 'linear-gradient(135deg, #FF5D00, #8C0DC2)'
                         : 'linear-gradient(135deg, #8C0DC2, #008FCD)',
                     borderRadius: '50%',
-                    display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     color: 'white',
@@ -294,6 +283,7 @@ export default function Solucao() {
                     zIndex: 10,
                     fontWeight: 'bold',
                   }}
+                  className="hidden lg:flex items-center justify-center"
                 >
                   ↗
                 </motion.div>

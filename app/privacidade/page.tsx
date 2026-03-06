@@ -12,18 +12,11 @@ export default function PrivacidadePage() {
     <PageGradientBackground>
       <section
         style={{
-          paddingTop: 'clamp(124px, 14vw, 168px)',
-          paddingBottom: '120px',
+          paddingTop: 'var(--page-top)',
+          paddingBottom: 'var(--shell-y)',
         }}
       >
-        <div
-          style={{
-            maxWidth: '1200px',
-            margin: '0 auto',
-            paddingLeft: 'clamp(24px, 6vw, 80px)',
-            paddingRight: 'clamp(24px, 6vw, 80px)',
-          }}
-        >
+        <div className="shell-container">
           <span
             className="font-display"
             style={{
@@ -45,7 +38,7 @@ export default function PrivacidadePage() {
             className="font-display"
             style={{
               fontWeight: 700,
-              fontSize: 'clamp(34px, 4.5vw, 56px)',
+              fontSize: 'clamp(30px, 8vw, 56px)',
               lineHeight: 1.12,
               color: '#FFFFFF',
               letterSpacing: '-0.02em',
@@ -58,11 +51,11 @@ export default function PrivacidadePage() {
           <p
             className="font-body"
             style={{
-              fontSize: '17px',
+              fontSize: 'clamp(15px, 4.3vw, 17px)',
               color: 'rgba(255,255,255,0.55)',
               lineHeight: 1.75,
               maxWidth: '860px',
-              marginBottom: '56px',
+              marginBottom: 'clamp(36px, 7vw, 56px)',
             }}
           >
             Esta política explica como recolhemos, usamos e protegemos os dados pessoais submetidos

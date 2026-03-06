@@ -59,8 +59,8 @@ const gridCases = [
 
 export default function Resultados() {
   return (
-    <section style={{ background: 'transparent', padding: '120px 0' }}>
-      <div style={{ maxWidth: '1200px', margin: '0 auto', paddingLeft: '80px', paddingRight: '80px' }}>
+    <section className="section-shell" style={{ background: 'transparent' }}>
+      <div className="shell-container">
         {/* Label */}
         <motion.p
           initial={{ opacity: 0 }}
@@ -111,14 +111,14 @@ export default function Resultados() {
             fontSize: '18px',
             color: 'rgba(255,255,255,0.45)',
             lineHeight: '1.6',
-            marginBottom: '80px',
+            marginBottom: 'clamp(44px, 8vw, 80px)',
           }}
         >
           Clientes reais. Números reais. Mercados exigentes.
         </motion.p>
 
         {/* Featured Cases */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '80px', marginBottom: '80px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(40px, 8vw, 80px)', marginBottom: 'clamp(48px, 8vw, 80px)' }}>
           {cases.map((caseItem, i) => {
             const isEven = i % 2 === 0
             const hasVideo = caseItem.video
@@ -130,11 +130,9 @@ export default function Resultados() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: '-60px' }}
                 transition={{ duration: 0.8, ease }}
+                className={hasVideo ? 'grid grid-cols-1 lg:grid-cols-2 items-center' : 'grid grid-cols-1'}
                 style={{
-                  display: 'grid',
-                  gridTemplateColumns: hasVideo ? '1fr 1fr' : '1fr',
-                  gap: '64px',
-                  alignItems: 'center',
+                  gap: 'clamp(24px, 6vw, 64px)',
                 }}
               >
                 {/* Text Side */}
@@ -176,7 +174,7 @@ export default function Resultados() {
                   </p>
 
                   {/* Metrics */}
-                  <div style={{ display: 'flex', gap: '32px' }}>
+                  <div style={{ display: 'flex', gap: '32px', flexWrap: 'wrap' }}>
                     {caseItem.metrics.map((metric) => (
                       <div key={metric.label}>
                         <p
@@ -254,19 +252,12 @@ export default function Resultados() {
           style={{
             height: '1px',
             background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)',
-            margin: '80px 0',
+            margin: 'clamp(44px, 8vw, 80px) 0',
           }}
         />
 
         {/* Grid Cases */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(2, 1fr)',
-            gap: '24px',
-          }}
-          className="md:grid-cols-1"
-        >
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {gridCases.map((caseItem, i) => (
             <motion.div
               key={caseItem.id}

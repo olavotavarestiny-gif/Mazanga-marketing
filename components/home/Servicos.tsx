@@ -69,15 +69,8 @@ export default function Servicos() {
   const toggle = (i: number) => setOpenCard(prev => prev === i ? null : i)
 
   return (
-    <section style={{ background: 'transparent', padding: '120px 0' }}>
-      <div
-        style={{
-          maxWidth: '1200px',
-          margin: '0 auto',
-          paddingLeft: '80px',
-          paddingRight: '80px',
-        }}
-      >
+    <section className="section-shell" style={{ background: 'transparent' }}>
+      <div className="shell-container">
         {/* Label */}
         <motion.p
           initial={{ opacity: 0 }}
@@ -128,21 +121,14 @@ export default function Servicos() {
             fontSize: '18px',
             color: 'rgba(255,255,255,0.45)',
             lineHeight: '1.6',
-            marginBottom: '72px',
+            marginBottom: 'clamp(40px, 7vw, 72px)',
           }}
         >
           Quatro áreas. Dois modelos de entrega. Um sistema integrado que funciona.
         </motion.p>
 
         {/* Grid 2x2 */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(2, 1fr)',
-            gap: '20px',
-          }}
-          className="lg:grid-cols-2 md:grid-cols-1"
-        >
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
           {services.map((s, i) => {
             const isOpen = openCard === i
 
@@ -158,7 +144,7 @@ export default function Servicos() {
                   background: 'rgba(255,255,255,0.03)',
                   border: `1px solid ${isOpen ? 'rgba(255,93,0,0.3)' : 'rgba(255,255,255,0.07)'}`,
                   borderRadius: '20px',
-                  padding: '40px 36px',
+                  padding: 'clamp(24px, 4vw, 40px) clamp(20px, 4vw, 36px)',
                   cursor: 'pointer',
                   transition: 'all 0.3s ease',
                 }}
@@ -285,15 +271,7 @@ export default function Servicos() {
                         </p>
 
                         {/* Delivery models grid */}
-                        <div
-                          style={{
-                            display: 'grid',
-                            gridTemplateColumns: '1fr 1fr',
-                            gap: '16px',
-                            marginTop: '8px',
-                          }}
-                          className="md:grid-cols-1"
-                        >
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
                           {/* ONE-OFF box */}
                           <div
                             style={{

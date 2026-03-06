@@ -36,7 +36,7 @@ export default function Numeros() {
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
-                    padding: '0 64px',
+                    padding: '0 clamp(28px, 8vw, 64px)',
                     textAlign: 'center',
                   }}
                 >

@@ -28,15 +28,8 @@ const cards = [
 
 export default function Diferencial() {
   return (
-    <section style={{ background: '#080810', padding: '120px 0' }}>
-      <div
-        style={{
-          maxWidth: '1200px',
-          margin: '0 auto',
-          paddingLeft: '80px',
-          paddingRight: '80px',
-        }}
-      >
+    <section className="section-shell" style={{ background: '#080810' }}>
+      <div className="shell-container">
 
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -44,7 +37,7 @@ export default function Diferencial() {
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6, ease }}
           className="text-center"
-          style={{ marginBottom: '64px', maxWidth: '640px', marginLeft: 'auto', marginRight: 'auto' }}
+          style={{ marginBottom: 'clamp(36px, 7vw, 64px)', maxWidth: '640px', marginLeft: 'auto', marginRight: 'auto' }}
         >
           <p className="font-display font-700 uppercase" style={{ fontSize: '11px', letterSpacing: '0.1em', color: '#FF5D00', marginBottom: '16px' }}>
             Diferencial
@@ -63,7 +56,7 @@ export default function Diferencial() {
               viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.5, delay: i * 0.1, ease }}
               className="rounded-2xl transition-all duration-300"
-              style={{ background: '#0C0C14', border: '1px solid rgba(255,255,255,0.06)', padding: '36px' }}
+              style={{ background: '#0C0C14', border: '1px solid rgba(255,255,255,0.06)', padding: 'clamp(24px, 4vw, 36px)' }}
               onMouseEnter={e => { e.currentTarget.style.borderColor = `${c.color}40`; e.currentTarget.style.transform = 'translateY(-4px)' }}
               onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)'; e.currentTarget.style.transform = 'translateY(0)' }}
             >

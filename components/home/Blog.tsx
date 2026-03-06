@@ -11,7 +11,7 @@ export default function Blog() {
   const gridPosts = blogPosts.slice(1)
 
   return (
-    <section id="blog" style={{ background: 'transparent', padding: '120px 0' }}>
+    <section id="blog" className="section-shell" style={{ background: 'transparent' }}>
       <div
         style={{
           maxWidth: '1200px',
@@ -133,7 +133,7 @@ export default function Blog() {
                   className="font-display"
                   style={{
                     fontWeight: 700,
-                    fontSize: '28px',
+                    fontSize: 'clamp(24px, 5.5vw, 28px)',
                     color: '#FFFFFF',
                     lineHeight: 1.3,
                     marginBottom: '16px',
@@ -190,7 +190,7 @@ export default function Blog() {
                     'linear-gradient(135deg, rgba(255,93,0,0.08), rgba(140,13,194,0.08))',
                   border: '1px solid rgba(255,93,0,0.1)',
                   borderRadius: '16px',
-                  height: '280px',
+                  height: 'clamp(200px, 45vw, 280px)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -200,7 +200,7 @@ export default function Blog() {
                   className="font-display"
                   style={{
                     fontWeight: 800,
-                    fontSize: '120px',
+                    fontSize: 'clamp(84px, 24vw, 120px)',
                     color: '#FFFFFF',
                     opacity: 0.06,
                     lineHeight: 1,
@@ -228,7 +228,7 @@ export default function Blog() {
                     background: 'rgba(255,255,255,0.03)',
                     border: '1px solid rgba(255,255,255,0.07)',
                     borderRadius: '20px',
-                    padding: '36px 32px',
+                    padding: 'clamp(24px, 5vw, 36px) clamp(20px, 5vw, 32px)',
                     cursor: 'pointer',
                     transition: 'all 0.3s ease',
                     display: 'flex',
