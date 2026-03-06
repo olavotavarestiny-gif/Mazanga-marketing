@@ -2,7 +2,6 @@ import { Metadata } from 'next'
 import ContactoForm from './ContactoForm'
 import GradientText from '@/components/ui/GradientText'
 import Badge from '@/components/ui/Badge'
-import SectionWrapper from '@/components/ui/SectionWrapper'
 import { MessageCircle, Mail, Clock, CheckCircle } from 'lucide-react'
 
 export const metadata: Metadata = {
@@ -27,7 +26,14 @@ export default function ContactoPage() {
         />
         <div className="absolute inset-0 grid-bg opacity-30 pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          style={{
+            maxWidth: '1200px',
+            margin: '0 auto',
+            paddingLeft: 'clamp(24px, 6vw, 80px)',
+            paddingRight: 'clamp(24px, 6vw, 80px)',
+          }}
+        >
           <Badge variant="gateway" className="mb-5">Pedir Proposta</Badge>
           <h1
             className="font-display font-800 text-white leading-tight mb-4"
@@ -42,7 +48,15 @@ export default function ContactoPage() {
         </div>
       </section>
 
-      <SectionWrapper className="py-12 pb-24 bg-bg-primary">
+      <section className="py-12 pb-24 bg-bg-primary">
+        <div
+          style={{
+            maxWidth: '1200px',
+            margin: '0 auto',
+            paddingLeft: 'clamp(24px, 6vw, 80px)',
+            paddingRight: 'clamp(24px, 6vw, 80px)',
+          }}
+        >
         <div className="grid lg:grid-cols-5 gap-12 lg:gap-16">
 
           {/* Form */}
@@ -106,7 +120,8 @@ export default function ContactoPage() {
             </div>
           </div>
         </div>
-      </SectionWrapper>
+        </div>
+      </section>
     </>
   )
 }
