@@ -331,7 +331,7 @@ export default function Solucao() {
               transition: 'all 0.3s ease',
             }}
             onClick={() => {
-              document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' })
+              window.location.href = '/contacto'
             }}
           >
             Descobre o teu nível →
