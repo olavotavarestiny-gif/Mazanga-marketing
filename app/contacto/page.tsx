@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import { CheckCircle, Clock, Mail, MessageCircle } from 'lucide-react'
-import ContactoForm from './ContactoForm'
+import LeadForm from '@/components/forms/LeadForm'
 import PageGradientBackground from '@/components/layout/PageGradientBackground'
 
 export const metadata: Metadata = {
@@ -91,7 +91,7 @@ export default function ContactoPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-8 items-start">
             <div className="lg:col-span-3">
-              <ContactoForm />
+              <LeadForm />
             </div>
 
             <div className="lg:col-span-2 flex flex-col gap-5">

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { blogPosts, getBlogPostBySlug } from '@/lib/blog-posts'
+import { blogPosts, getBlogPostBySlug } from '@/content/blog-posts'
 import PageGradientBackground from '@/components/layout/PageGradientBackground'
 
 type PageProps = {

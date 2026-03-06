@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { blogPosts } from '@/lib/blog-posts'
+import { blogPosts } from '@/content/blog-posts'
 
 const ease = [0.22, 1, 0.36, 1] as const
 

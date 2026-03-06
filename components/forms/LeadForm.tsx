@@ -58,7 +58,7 @@ const errorBase = 'font-body text-xs text-red-400 mt-1.5'
 const controlStyle = { paddingLeft: '22px', paddingRight: '22px' }
 const textareaStyle = { padding: '18px 22px' }
 
-export default function ContactoForm() {
+export default function LeadForm() {
   const [submitted, setSubmitted] = useState(false)
   const [submitting, setSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState<string | null>(null)
