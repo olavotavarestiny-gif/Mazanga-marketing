@@ -37,6 +37,15 @@ export const metadata: Metadata = {
   },
   applicationName: SITE_NAME,
   category: 'marketing',
+  manifest: '/manifest.webmanifest',
+  icons: {
+    icon: [
+      { url: '/favicon.ico', type: 'image/x-icon' },
+      { url: '/icon.png', type: 'image/png', sizes: '512x512' },
+    ],
+    apple: [{ url: '/apple-icon.png', type: 'image/png', sizes: '180x180' }],
+    shortcut: ['/favicon.ico'],
+  },
   openGraph: {
     type: 'website',
     locale: 'pt_AO',
