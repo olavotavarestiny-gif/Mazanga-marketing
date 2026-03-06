@@ -2,12 +2,21 @@ import { Metadata } from 'next'
 import { CheckCircle, Clock, Mail, MessageCircle } from 'lucide-react'
 import LeadForm from '@/components/forms/LeadForm'
 import PageGradientBackground from '@/components/layout/PageGradientBackground'
+import { buildPageMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = {
-  title: 'Pedir Proposta | Mazanga Marketing — Contacto',
+export const metadata: Metadata = buildPageMetadata({
+  title: 'Contacto e Diagnóstico de Marketing | Mazanga Marketing',
   description:
-    'Pede a tua proposta personalizada. Respondemos em menos de 24h com um diagnóstico inicial e próximos passos claros.',
-}
+    'Pede uma proposta de marketing digital para o teu negócio em Angola. A equipa da Mazanga responde em menos de 24h com próximos passos claros.',
+  path: '/contacto',
+  keywords: [
+    'contacto agencia marketing angola',
+    'diagnostico marketing digital',
+    'proposta marketing luanda',
+    'consultoria marketing angola',
+    'agencia marketing whatsapp angola',
+  ],
+})
 
 const garantias = [
   { icon: Clock, text: 'Resposta em menos de 24h' },

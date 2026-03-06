@@ -1,0 +1,46 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#070709" />
+      <stop offset="1" stop-color="#0F0B14" />
+    </linearGradient>
+    <linearGradient id="brand" x1="120" y1="88" x2="1080" y2="560" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF5D00" />
+      <stop offset="0.55" stop-color="#8C0DC2" />
+      <stop offset="1" stop-color="#008FCD" />
+    </linearGradient>
+    <radialGradient id="orb1" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1010 110) rotate(137.8) scale(300 230)">
+      <stop stop-color="#8C0DC2" stop-opacity="0.28" />
+      <stop offset="1" stop-color="#8C0DC2" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="orb2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(160 540) rotate(15) scale(320 220)">
+      <stop stop-color="#FF5D00" stop-opacity="0.24" />
+      <stop offset="1" stop-color="#FF5D00" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <rect width="1200" height="630" fill="url(#orb1)" />
+  <rect width="1200" height="630" fill="url(#orb2)" />
+
+  <rect x="120" y="88" width="960" height="454" rx="24" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.12)" />
+
+  <text x="160" y="165" fill="#FFFFFF" font-family="Syne, Arial, sans-serif" font-size="38" font-weight="700">
+    Mazanga Marketing
+  </text>
+  <text x="160" y="226" fill="url(#brand)" font-family="Syne, Arial, sans-serif" font-size="62" font-weight="800">
+    Sistemas de Crescimento B2B
+  </text>
+  <text x="160" y="285" fill="#FFFFFF" font-family="Syne, Arial, sans-serif" font-size="62" font-weight="800">
+    para Negocios em Angola
+  </text>
+
+  <text x="160" y="350" fill="rgba(255,255,255,0.7)" font-family="Outfit, Arial, sans-serif" font-size="30" font-weight="400">
+    Mídia paga, conteudo visual, web design e automacoes
+  </text>
+
+  <rect x="160" y="414" width="400" height="56" rx="10" fill="url(#brand)" />
+  <text x="184" y="450" fill="#FFFFFF" font-family="Syne, Arial, sans-serif" font-size="24" font-weight="700">
+    mazanga.digital
+  </text>
+</svg>

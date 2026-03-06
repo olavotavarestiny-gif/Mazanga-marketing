@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { blogPosts, getBlogPostBySlug } from '@/content/blog-posts'
 import PageGradientBackground from '@/components/layout/PageGradientBackground'
+import { DEFAULT_OG_IMAGE, getBlogDates, SITE_NAME, SITE_URL } from '@/lib/seo'
 
 type PageProps = {
   params: Promise<{
@@ -28,22 +29,33 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     }
   }
 
+  const dates = getBlogDates(post.slug)
+  const canonicalPath = `/blog/${post.slug}`
+
   return {
     title: post.metadata.title,
     description: post.metadata.description,
     keywords: post.metadata.keywords,
+    alternates: {
+      canonical: canonicalPath,
+    },
     openGraph: {
       title: post.metadata.title,
       description: post.metadata.description,
       type: 'article',
-      siteName: 'Mazanga Marketing',
+      siteName: SITE_NAME,
       locale: 'pt_AO',
-      url: `https://mazanga.digital/blog/${post.slug}`,
+      url: `${SITE_URL}${canonicalPath}`,
+      publishedTime: dates.published,
+      modifiedTime: dates.updated,
+      authors: ['Mazanga Marketing'],
+      images: [{ url: DEFAULT_OG_IMAGE, width: 1200, height: 630 }],
     },
     twitter: {
       card: 'summary_large_image',
       title: post.metadata.title,
       description: post.metadata.description,
+      images: [DEFAULT_OG_IMAGE],
     },
   }
 }
@@ -56,9 +68,37 @@ export default async function BlogPostPage({ params }: PageProps) {
     notFound()
   }
 
+  const dates = getBlogDates(post.slug)
+  const canonicalUrl = `${SITE_URL}/blog/${post.slug}`
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    description: post.metadata.description,
+    inLanguage: 'pt-AO',
+    url: canonicalUrl,
+    datePublished: dates.published,
+    dateModified: dates.updated,
+    author: {
+      '@type': 'Organization',
+      name: SITE_NAME,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: SITE_NAME,
+      url: SITE_URL,
+    },
+    mainEntityOfPage: canonicalUrl,
+    keywords: post.metadata.keywords.join(', '),
+  }
+
   return (
     <PageGradientBackground>
       <section>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       <article className="article-shell">
         <Link
           href="/blog"

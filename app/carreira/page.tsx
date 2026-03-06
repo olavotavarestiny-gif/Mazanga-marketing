@@ -1,11 +1,18 @@
 import type { Metadata } from 'next'
 import PageGradientBackground from '@/components/layout/PageGradientBackground'
+import { buildPageMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: 'Carreira | Mazanga Marketing',
   description:
-    'Carreiras na Mazanga Marketing. Neste momento não temos vagas disponíveis, mas podes enviar o teu perfil para futuras oportunidades.',
-}
+    'Página de carreira da Mazanga Marketing. Acompanha novas oportunidades e envia o teu perfil para futuras vagas na área de marketing digital.',
+  path: '/carreira',
+  keywords: [
+    'carreira marketing angola',
+    'vagas marketing digital angola',
+    'trabalhar com marketing luanda',
+  ],
+})
 
 export default function CarreiraPage() {
   return (

@@ -4,6 +4,7 @@ import Script from 'next/script';
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from '@/lib/seo'
 
 const syne = Syne({
   subsets: ['latin'],
@@ -20,48 +21,85 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: 'Mazanga Marketing | Sistema de Crescimento B2B — Luanda, Angola',
+  title: {
+    default: 'Mazanga Marketing | Sistema de Crescimento B2B em Angola',
+    template: '%s',
+  },
   description: 'Mazanga implementa sistemas completos de aquisição e organização comercial para empresas B2B angolanas. ROI mensurável, não posts bonitos. Luanda, Angola.',
   keywords: [
     'agência marketing angola', 'marketing b2b angola', 'crescimento empresarial angola',
     'meta ads angola', 'google ads angola', 'crm angola', 'marketing digital luanda',
     'agência publicidade angola', 'sistema de vendas angola', 'mazanga marketing'
   ],
-  metadataBase: new URL('https://mazanga.digital'),
+  metadataBase: new URL(SITE_URL),
+  alternates: {
+    canonical: '/',
+  },
+  applicationName: SITE_NAME,
+  category: 'marketing',
   openGraph: {
     type: 'website',
     locale: 'pt_AO',
-    url: 'https://mazanga.digital',
-    siteName: 'Mazanga Marketing',
+    url: SITE_URL,
+    siteName: SITE_NAME,
     title: 'Mazanga — Sistemas que geram receita previsível',
     description: 'Sistema completo de aquisição B2B para empresas angolanas.',
-    images: [{ url: '/images/og-mazanga.jpg', width: 1200, height: 630 }],
+    images: [{ url: DEFAULT_OG_IMAGE, width: 1200, height: 630 }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Mazanga — Sistemas que geram receita previsível',
     description: 'Sistema completo de aquisição B2B para empresas angolanas.',
+    images: [DEFAULT_OG_IMAGE],
   },
-  robots: { index: true, follow: true },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-video-preview': -1,
+      'max-snippet': -1,
+    },
+  },
+  verification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+    ? {
+        google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+      }
+    : undefined,
+  other: {
+    'geo.region': 'AO-LUA',
+    'geo.placename': 'Luanda',
+  },
 };
 
-const schemaOrg = {
-  "@context": "https://schema.org",
-  "@type": "MarketingAgency",
-  "name": "Mazanga Marketing",
-  "url": "https://mazanga.digital",
-  "description": "Sistema completo de aquisição e organização comercial B2B para empresas angolanas.",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Luanda",
-    "addressCountry": "AO"
+const schemaOrg = [
+  {
+    "@context": "https://schema.org",
+    "@type": "MarketingAgency",
+    "name": SITE_NAME,
+    "url": SITE_URL,
+    "description": "Sistema completo de aquisição e organização comercial B2B para empresas angolanas.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Luanda",
+      "addressCountry": "AO"
+    },
+    "sameAs": [
+      "https://instagram.com/mazangamarketing.ao",
+      "https://www.linkedin.com/company/mazanga-digital"
+    ],
+    "areaServed": "AO"
   },
-  "sameAs": [
-    "https://instagram.com/mazangamarketing.ao",
-    "https://www.linkedin.com/company/mazanga-digital"
-  ],
-  "areaServed": "AO",
-};
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": SITE_NAME,
+    "url": SITE_URL,
+    "inLanguage": "pt-AO"
+  }
+];
 
 export default function RootLayout({
   children,

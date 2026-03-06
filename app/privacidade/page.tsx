@@ -1,11 +1,18 @@
 import type { Metadata } from 'next'
 import PageGradientBackground from '@/components/layout/PageGradientBackground'
+import { buildPageMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: 'Política de Privacidade | Mazanga Marketing',
   description:
-    'Política de Privacidade da Mazanga Marketing sobre recolha, uso e proteção de dados pessoais.',
-}
+    'Lê a política de privacidade da Mazanga Marketing e entende como recolhemos, usamos e protegemos os teus dados pessoais.',
+  path: '/privacidade',
+  keywords: [
+    'politica de privacidade mazanga',
+    'protecao de dados angola',
+    'privacidade marketing digital',
+  ],
+})
 
 export default function PrivacidadePage() {
   return (
