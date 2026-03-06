@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Syne, Outfit } from 'next/font/google';
+import Script from 'next/script';
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -74,8 +75,62 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrg) }}
         />
+        <Script id="google-translate-init" strategy="afterInteractive">
+          {`
+            function googleTranslateElementInit() {
+              new google.translate.TranslateElement(
+                {
+                  pageLanguage: 'pt',
+                  includedLanguages: 'pt,fr',
+                  autoDisplay: false,
+                },
+                'google_translate_element'
+              );
+
+              var savedLang = localStorage.getItem('site-lang');
+              if (savedLang === 'fr') {
+                document.cookie = 'googtrans=/pt/fr;path=/';
+                document.cookie = 'googtrans=/pt/fr;domain=' + location.hostname + ';path=/';
+                setTimeout(function () {
+                  var select = document.querySelector('.goog-te-combo');
+                  if (select) {
+                    select.value = 'fr';
+                    select.dispatchEvent(new Event('change'));
+                  }
+                }, 700);
+              }
+            }
+
+            window.__setSiteLanguage = function (lang) {
+              if (lang === 'pt') {
+                localStorage.setItem('site-lang', 'pt');
+                document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+                document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 GMT; domain=' + location.hostname + '; path=/';
+                window.location.reload();
+                return;
+              }
+
+              localStorage.setItem('site-lang', 'fr');
+              document.cookie = 'googtrans=/pt/fr;path=/';
+              document.cookie = 'googtrans=/pt/fr;domain=' + location.hostname + ';path=/';
+
+              var select = document.querySelector('.goog-te-combo');
+              if (select) {
+                select.value = 'fr';
+                select.dispatchEvent(new Event('change'));
+              } else {
+                window.location.reload();
+              }
+            };
+          `}
+        </Script>
+        <Script
+          src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+          strategy="afterInteractive"
+        />
       </head>
       <body className="font-body antialiased bg-bg-primary text-text-primary">
+        <div id="google_translate_element" style={{ display: 'none' }} />
         <Navbar />
         <main>{children}</main>
         <Footer />

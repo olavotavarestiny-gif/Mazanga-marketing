@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import { Menu, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import LanguageToggle from './LanguageToggle'
 
 const navLinks = [
   { label: 'Início', href: '/' },
@@ -107,28 +108,30 @@ export default function Navbar() {
             </nav>
 
             {/* Desktop CTA — pushed to right */}
-            <Link
-              href="/contacto"
-              className="hidden lg:inline-flex items-center gap-2 font-display font-600 transition-all duration-200"
-              style={{
-                marginLeft: 'auto',
-                padding: '8px 20px',
-                borderRadius: '8px',
-                fontSize: '14px',
-                background: 'linear-gradient(135deg, #FF5D00, #8C0DC2)',
-                color: '#FFFFFF',
-              }}
-              onMouseEnter={e => {
-                e.currentTarget.style.opacity = '0.9'
-                e.currentTarget.style.transform = 'scale(1.02)'
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.opacity = '1'
-                e.currentTarget.style.transform = 'scale(1)'
-              }}
-            >
-              Diagnóstico Gratuito
-            </Link>
+            <div className="hidden lg:flex items-center gap-3" style={{ marginLeft: 'auto' }}>
+              <LanguageToggle />
+              <Link
+                href="/contacto"
+                className="inline-flex items-center gap-2 font-display font-600 transition-all duration-200"
+                style={{
+                  padding: '8px 20px',
+                  borderRadius: '8px',
+                  fontSize: '14px',
+                  background: 'linear-gradient(135deg, #FF5D00, #8C0DC2)',
+                  color: '#FFFFFF',
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.opacity = '0.9'
+                  e.currentTarget.style.transform = 'scale(1.02)'
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.opacity = '1'
+                  e.currentTarget.style.transform = 'scale(1)'
+                }}
+              >
+                Diagnóstico Gratuito
+              </Link>
+            </div>
 
             {/* Mobile hamburger — pushed to right */}
             <button
@@ -201,6 +204,9 @@ export default function Navbar() {
                 transition={{ delay: navLinks.length * 0.08 + 0.1, duration: 0.4 }}
                 className="mt-8"
               >
+                <div className="mb-4">
+                  <LanguageToggle />
+                </div>
                 <Link
                   href="/contacto"
                   className="w-full inline-flex items-center justify-center font-display font-600 transition-all duration-200"

@@ -261,3 +261,20 @@ h1, h2, h3, h4, h5, h6 {
   background: rgba(255, 93, 0, 0.3);
   color: var(--white);
 }
+
+/* Hide Google Translate default UI/banners and keep custom language switch only */
+.goog-te-banner-frame.skiptranslate,
+.goog-logo-link,
+#goog-gt-tt,
+.goog-te-balloon-frame {
+  display: none !important;
+}
+
+.goog-te-gadget {
+  font-size: 0 !important;
+  color: transparent !important;
+}
+
+body {
+  top: 0 !important;
+}
