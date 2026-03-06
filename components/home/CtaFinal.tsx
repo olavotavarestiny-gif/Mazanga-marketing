@@ -94,7 +94,7 @@ export default function CtaFinal() {
             </Link>
 
             <Link
-              href="https://wa.me/244000000000"
+              href="https://wa.me/244942277576"
               className="inline-flex items-center gap-2 font-display font-600 transition-all duration-200"
               style={{
                 padding: '14px 28px',

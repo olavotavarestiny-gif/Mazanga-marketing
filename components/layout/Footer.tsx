@@ -19,9 +19,9 @@ const serviceLinks = [
 ]
 
 const socials = [
-  { icon: Instagram, href: 'https://instagram.com/mazangamarketing', label: 'Instagram' },
-  { icon: Linkedin, href: 'https://linkedin.com/company/mazangamarketing', label: 'LinkedIn' },
-  { icon: MessageCircle, href: 'https://wa.me/244000000000', label: 'WhatsApp' },
+  { icon: Instagram, href: 'https://instagram.com/mazangamarketing.ao', label: 'Instagram' },
+  { icon: Linkedin, href: 'https://www.linkedin.com/company/mazanga-digital', label: 'LinkedIn' },
+  { icon: MessageCircle, href: 'https://wa.me/244942277576', label: 'WhatsApp' },
 ]
 
 export default function Footer() {
@@ -112,11 +112,11 @@ export default function Footer() {
             </p>
             <div className="flex flex-col" style={{ gap: '12px' }}>
               <span className="font-body" style={{ fontSize: '14px', color: 'rgba(255,255,255,0.4)' }}>Luanda, Angola</span>
-              <a href="mailto:info@mazangamarketing.com" className="font-body flex items-center gap-2 transition-colors duration-200" style={{ fontSize: '14px', color: 'rgba(255,255,255,0.4)' }} onMouseEnter={e => { e.currentTarget.style.color = '#FFFFFF' }} onMouseLeave={e => { e.currentTarget.style.color = 'rgba(255,255,255,0.4)' }}>
+              <a href="mailto:info@mazanga.digital" className="font-body flex items-center gap-2 transition-colors duration-200" style={{ fontSize: '14px', color: 'rgba(255,255,255,0.4)' }} onMouseEnter={e => { e.currentTarget.style.color = '#FFFFFF' }} onMouseLeave={e => { e.currentTarget.style.color = 'rgba(255,255,255,0.4)' }}>
                 <Mail size={14} />
-                info@mazangamarketing.com
+                info@mazanga.digital
               </a>
-              <a href="https://wa.me/244000000000" className="font-body flex items-center gap-2 transition-colors duration-200" style={{ fontSize: '14px', color: 'rgba(255,255,255,0.4)' }} onMouseEnter={e => { e.currentTarget.style.color = '#FFFFFF' }} onMouseLeave={e => { e.currentTarget.style.color = 'rgba(255,255,255,0.4)' }}>
+              <a href="https://wa.me/244942277576" className="font-body flex items-center gap-2 transition-colors duration-200" style={{ fontSize: '14px', color: 'rgba(255,255,255,0.4)' }} onMouseEnter={e => { e.currentTarget.style.color = '#FFFFFF' }} onMouseLeave={e => { e.currentTarget.style.color = 'rgba(255,255,255,0.4)' }}>
                 <MessageCircle size={14} />
                 WhatsApp Business
               </a>

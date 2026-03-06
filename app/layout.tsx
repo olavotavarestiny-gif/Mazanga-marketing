@@ -57,8 +57,8 @@ const schemaOrg = {
     "addressCountry": "AO"
   },
   "sameAs": [
-    "https://instagram.com/mazangamarketing",
-    "https://linkedin.com/company/mazanga"
+    "https://instagram.com/mazangamarketing.ao",
+    "https://www.linkedin.com/company/mazanga-digital"
   ],
   "areaServed": "AO",
 };
