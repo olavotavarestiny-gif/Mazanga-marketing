@@ -42,18 +42,17 @@ const comoEncontrouOptions = [
 
 const servicoOptions = [
   { value: '', label: 'Serviço de interesse' },
-  { value: 'diagnostico', label: 'Diagnóstico Estratégico' },
-  { value: 'fundacao', label: 'Projecto Fundação' },
-  { value: 'growth', label: 'Growth B2B' },
-  { value: 'scale', label: 'Scale Premium' },
-  { value: 'nao-sei', label: 'Não sei ainda — quero aconselhamento' },
+  { value: 'midia-paga', label: 'Mídia paga' },
+  { value: 'conteudo-visual', label: 'Conteúdo visual' },
+  { value: 'web-design', label: 'Web design' },
+  { value: 'automacoes', label: 'Automações' },
 ]
 
 const labelBase = 'font-body text-[13px] text-white/60 mb-2 block'
 const inputBase =
-  'w-full h-12 bg-white/[0.02] border border-white/10 rounded-xl px-4 font-body text-[15px] text-white placeholder:text-white/30 focus:outline-none focus:border-brand-orange/55 transition-colors duration-200'
+  'w-full h-[52px] bg-white/[0.02] border border-white/10 rounded-xl px-5 font-body text-[15px] text-white placeholder:text-white/30 focus:outline-none focus:border-brand-orange/55 transition-colors duration-200'
 const textareaBase =
-  'w-full bg-white/[0.02] border border-white/10 rounded-xl px-4 py-3 font-body text-[15px] text-white placeholder:text-white/30 focus:outline-none focus:border-brand-orange/55 transition-colors duration-200 resize-none'
+  'w-full bg-white/[0.02] border border-white/10 rounded-xl px-5 py-4 font-body text-[15px] text-white placeholder:text-white/30 focus:outline-none focus:border-brand-orange/55 transition-colors duration-200 resize-none'
 const errorBase = 'font-body text-xs text-red-400 mt-1.5'
 
 export default function ContactoForm() {
@@ -112,7 +111,7 @@ export default function ContactoForm() {
       style={{
         background: 'rgba(255,255,255,0.03)',
         borderColor: 'rgba(255,255,255,0.09)',
-        padding: 'clamp(24px, 3vw, 36px)',
+        padding: 'clamp(30px, 4vw, 44px)',
       }}
       noValidate
     >
@@ -128,9 +127,9 @@ export default function ContactoForm() {
       >
         Pedido de proposta
       </p>
-      <h2 className="font-display font-700 text-white text-[30px] leading-tight mb-8">Dados do pedido</h2>
+      <h2 className="font-display font-700 text-white text-[30px] leading-tight mb-10">Dados do pedido</h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
         <div>
           <label className={labelBase}>Nome completo *</label>
           <input
@@ -173,7 +172,7 @@ export default function ContactoForm() {
         </div>
       </div>
 
-      <div className="mb-5">
+      <div className="mb-6">
         <label className={labelBase}>Email *</label>
         <input
           {...register('email')}
@@ -184,7 +183,7 @@ export default function ContactoForm() {
         {errors.email && <p className={errorBase}>{errors.email.message}</p>}
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
         <div>
           <label className={labelBase}>Facturamento anual *</label>
           <select
@@ -218,7 +217,7 @@ export default function ContactoForm() {
         </div>
       </div>
 
-      <div className="mb-5">
+      <div className="mb-6">
         <label className={labelBase}>Como nos encontrou? *</label>
         <select
           {...register('como_nos_encontrou')}

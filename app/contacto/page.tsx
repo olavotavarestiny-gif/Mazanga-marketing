@@ -121,20 +121,20 @@ export default function ContactoPage() {
                 style={{
                   background: 'rgba(255,255,255,0.03)',
                   borderColor: 'rgba(255,255,255,0.09)',
-                  padding: '28px',
+                  padding: '32px',
                 }}
               >
                 <h3 className="font-display font-700 text-white text-[24px] leading-tight mb-2">
                   Preferes falar directamente?
                 </h3>
-                <p className="font-body text-[15px] text-white/55 leading-relaxed mb-5">
+                <p className="font-body text-[15px] text-white/55 leading-relaxed mb-6">
                   Envia-nos mensagem no WhatsApp e respondemos rapidamente.
                 </p>
                 <a
                   href="https://wa.me/244935000000?text=Olá,%20tenho%20interesse%20em%20saber%20mais%20sobre%20os%20serviços%20da%20Mazanga%20Marketing."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 font-display font-700 text-[14px] text-white rounded-[10px] px-5 h-11 transition-opacity"
+                  className="inline-flex items-center gap-2 font-display font-700 text-[14px] text-white rounded-[10px] px-6 h-11 transition-opacity"
                   style={{ background: 'linear-gradient(135deg, #25D366, #12b04f)' }}
                 >
                   <MessageCircle size={16} />
