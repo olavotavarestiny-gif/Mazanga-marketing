@@ -131,7 +131,7 @@ export default function ContactoPage() {
                   Envia-nos mensagem no WhatsApp e respondemos rapidamente.
                 </p>
                 <a
-                  href="https://wa.me/244935000000?text=Olá,%20tenho%20interesse%20em%20saber%20mais%20sobre%20os%20serviços%20da%20Mazanga%20Marketing."
+                  href="https://wa.me/244942277576?text=Olá,%20tenho%20interesse%20em%20saber%20mais%20sobre%20os%20serviços%20da%20Mazanga%20Marketing."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 font-display font-700 text-[14px] text-white rounded-[10px] px-6 h-11 transition-opacity"
@@ -155,10 +155,10 @@ export default function ContactoPage() {
                   <span className="font-display font-700 text-white text-[15px]">Email</span>
                 </div>
                 <a
-                  href="mailto:info@mazanga.digital"
+                  href="mailto:suporte@mazanga.digital"
                   className="font-body text-[15px] text-white/60 hover:text-white transition-colors"
                 >
-                  info@mazanga.digital
+                  suporte@mazanga.digital
                 </a>
               </div>
 
