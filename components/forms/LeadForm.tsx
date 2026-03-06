@@ -62,6 +62,7 @@ export default function LeadForm() {
   const [submitted, setSubmitted] = useState(false)
   const [submitting, setSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState<string | null>(null)
+  const [submitWarning, setSubmitWarning] = useState<string | null>(null)
 
   const {
     register,
@@ -72,6 +73,7 @@ export default function LeadForm() {
   const onSubmit = async (data: FormData) => {
     setSubmitting(true)
     setSubmitError(null)
+    setSubmitWarning(null)
 
     try {
       const response = await fetch('/api/lead', {
@@ -93,11 +95,19 @@ export default function LeadForm() {
         }),
       })
 
-      const result = (await response.json().catch(() => ({}))) as { success?: boolean; error?: string }
+      const result = (await response.json().catch(() => ({}))) as {
+        success?: boolean
+        error?: string
+        warning?: string
+      }
 
       if (!response.ok || !result.success) {
         setSubmitError(result.error ?? 'Não foi possível enviar o pedido. Tenta novamente.')
         return
+      }
+
+      if (result.warning) {
+        setSubmitWarning(result.warning)
       }
 
       setSubmitted(true)
@@ -136,6 +146,9 @@ export default function LeadForm() {
           passos claros.
         </p>
         <p className="font-body text-white/40 text-sm">Obrigado por escolher a Mazanga Marketing.</p>
+        {submitWarning && (
+          <p className="font-body text-amber-300/90 text-xs leading-relaxed mt-4">{submitWarning}</p>
+        )}
       </motion.div>
     )
   }

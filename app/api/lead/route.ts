@@ -19,9 +19,22 @@ type RateLimitEntry = {
   resetAt: number
 }
 
+type GhlContactPayload = {
+  firstName: string
+  lastName: string
+  name: string
+  email?: string
+  phone?: string
+  source?: string
+  locationId?: string
+  tags?: string[]
+}
+
 const RATE_LIMIT_MAX = 5
 const RATE_LIMIT_WINDOW_MS = 60 * 1000
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+const GHL_API_BASE = 'https://services.leadconnectorhq.com'
+const GHL_API_VERSION = '2021-07-28'
 
 const globalForRateLimit = globalThis as typeof globalThis & {
   __leadRateLimitStore?: Map<string, RateLimitEntry>
@@ -75,6 +88,95 @@ function validatePayload(payload: LeadPayload) {
   }
 
   return null
+}
+
+function splitName(fullName: string) {
+  const trimmed = fullName.trim().replace(/\s+/g, ' ')
+  const [firstName = '', ...rest] = trimmed.split(' ')
+  return {
+    firstName,
+    lastName: rest.join(' '),
+    fullName: trimmed,
+  }
+}
+
+function toGhlContactPayload(payload: LeadPayload): GhlContactPayload {
+  const normalizedName = splitName(payload.name?.trim() ?? '')
+  const locationId = process.env.GHL_LOCATION_ID?.trim()
+
+  return {
+    firstName: normalizedName.firstName,
+    lastName: normalizedName.lastName,
+    name: normalizedName.fullName,
+    email: payload.email?.trim().toLowerCase(),
+    phone: payload.phone?.trim(),
+    source: payload.source?.trim() || 'website',
+    locationId: locationId || undefined,
+    tags: [
+      'Website Lead',
+      payload.service_interest?.trim() ? `Servico:${payload.service_interest.trim()}` : '',
+      payload.revenue?.trim() ? `Facturacao:${payload.revenue.trim()}` : '',
+    ].filter(Boolean),
+  }
+}
+
+async function sendLeadToGhlWebhook(payload: LeadPayload, webhookUrl: string) {
+  const response = await fetch(webhookUrl, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      ...payload,
+      submitted_at: new Date().toISOString(),
+    }),
+    cache: 'no-store',
+  })
+
+  if (!response.ok) {
+    const bodyText = await response.text().catch(() => '')
+    throw new Error(`Webhook GHL error (${response.status}): ${bodyText || 'no response body'}`)
+  }
+}
+
+async function sendLeadToGhlApi(payload: LeadPayload, apiKey: string) {
+  const locationId = process.env.GHL_LOCATION_ID?.trim()
+
+  const response = await fetch(`${GHL_API_BASE}/contacts/`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      Version: GHL_API_VERSION,
+      'Content-Type': 'application/json',
+      ...(locationId ? { 'Location-Id': locationId } : {}),
+    },
+    body: JSON.stringify(toGhlContactPayload(payload)),
+    cache: 'no-store',
+  })
+
+  if (!response.ok) {
+    const bodyText = await response.text().catch(() => '')
+    throw new Error(`API GHL error (${response.status}): ${bodyText || 'no response body'}`)
+  }
+}
+
+async function forwardLeadToGhl(payload: LeadPayload) {
+  const webhookUrl = process.env.GHL_WEBHOOK_URL?.trim()
+  const apiKey = process.env.GHL_API_KEY?.trim()
+
+  if (!webhookUrl && !apiKey) {
+    return { enabled: false as const }
+  }
+
+  if (webhookUrl) {
+    await sendLeadToGhlWebhook(payload, webhookUrl)
+    return { enabled: true as const, mode: 'webhook' as const }
+  }
+
+  if (apiKey) {
+    await sendLeadToGhlApi(payload, apiKey)
+    return { enabled: true as const, mode: 'api' as const }
+  }
+
+  return { enabled: false as const }
 }
 
 export async function POST(req: NextRequest) {
@@ -133,7 +235,29 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    return NextResponse.json({ success: true }, { status: 201 })
+    try {
+      const forwardResult = await forwardLeadToGhl(body)
+
+      return NextResponse.json(
+        {
+          success: true,
+          forwardedToGhl: forwardResult.enabled,
+          forwardingMode: 'mode' in forwardResult ? forwardResult.mode : null,
+        },
+        { status: 201 }
+      )
+    } catch (forwardError) {
+      console.error('Lead forwarding to GHL failed:', forwardError)
+
+      return NextResponse.json(
+        {
+          success: true,
+          forwardedToGhl: false,
+          warning: 'Lead guardado no sistema interno, mas falhou envio para GoHighLevel.',
+        },
+        { status: 201 }
+      )
+    }
   } catch (error) {
     console.error('Lead API unexpected error:', error)
     return NextResponse.json(
