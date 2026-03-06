@@ -18,6 +18,7 @@ const schema = z.object({
   desafio: z.string().min(20, 'Descreve o teu principal desafio (mín. 20 caracteres)'),
   como_nos_encontrou: z.string().min(1, 'Selecciona uma opção'),
   servico_interesse: z.string().min(1, 'Selecciona um serviço'),
+  website: z.string().optional(),
 })
 
 type FormData = z.infer<typeof schema>
@@ -60,6 +61,7 @@ const textareaStyle = { padding: '18px 22px' }
 export default function ContactoForm() {
   const [submitted, setSubmitted] = useState(false)
   const [submitting, setSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
 
   const {
     register,
@@ -69,10 +71,42 @@ export default function ContactoForm() {
 
   const onSubmit = async (data: FormData) => {
     setSubmitting(true)
-    await new Promise((resolve) => setTimeout(resolve, 1500))
-    console.info('Form submitted:', data)
-    setSubmitting(false)
-    setSubmitted(true)
+    setSubmitError(null)
+
+    try {
+      const response = await fetch('/api/lead', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: data.nome,
+          company: data.empresa,
+          role: data.cargo,
+          phone: data.telefone,
+          email: data.email,
+          revenue: data.facturacao,
+          service_interest: data.servico_interesse,
+          source: data.como_nos_encontrou,
+          main_challenge: data.desafio,
+          website: data.website ?? '',
+        }),
+      })
+
+      const result = (await response.json().catch(() => ({}))) as { success?: boolean; error?: string }
+
+      if (!response.ok || !result.success) {
+        setSubmitError(result.error ?? 'Não foi possível enviar o pedido. Tenta novamente.')
+        return
+      }
+
+      setSubmitted(true)
+    } catch (error) {
+      console.error('Lead form submit failed:', error)
+      setSubmitError('Erro de ligação. Verifica a internet e tenta novamente.')
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   if (submitted) {
@@ -130,6 +164,21 @@ export default function ContactoForm() {
         Pedido de proposta
       </p>
       <h2 className="font-display font-700 text-white text-[30px] leading-tight mb-12">Dados do pedido</h2>
+
+      <input
+        {...register('website')}
+        type="text"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          opacity: 0,
+          pointerEvents: 'none',
+          height: 0,
+          width: 0,
+        }}
+      />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-8 mb-9">
         <div>
@@ -279,6 +328,12 @@ export default function ContactoForm() {
           </>
         )}
       </motion.button>
+
+      {submitError && (
+        <p className="font-body text-sm text-red-400 text-center mt-4" role="alert">
+          {submitError}
+        </p>
+      )}
 
       <p className="font-body text-xs text-white/35 text-center mt-4">
         Ao submeter concordas com o tratamento dos teus dados para resposta ao pedido.
