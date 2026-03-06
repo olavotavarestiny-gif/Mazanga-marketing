@@ -52,8 +52,10 @@ const labelBase = 'font-body text-[13px] text-white/60 mb-2.5 block'
 const inputBase =
   'w-full h-[56px] bg-white/[0.02] border border-white/10 rounded-xl px-6 font-body text-[15px] text-white placeholder:text-white/30 focus:outline-none focus:border-brand-orange/55 transition-colors duration-200'
 const textareaBase =
-  'w-full bg-white/[0.02] border border-white/10 rounded-xl px-6 py-4.5 font-body text-[15px] text-white placeholder:text-white/30 focus:outline-none focus:border-brand-orange/55 transition-colors duration-200 resize-none'
+  'w-full bg-white/[0.02] border border-white/10 rounded-xl font-body text-[15px] text-white placeholder:text-white/30 focus:outline-none focus:border-brand-orange/55 transition-colors duration-200 resize-none'
 const errorBase = 'font-body text-xs text-red-400 mt-1.5'
+const controlStyle = { paddingLeft: '22px', paddingRight: '22px' }
+const textareaStyle = { padding: '18px 22px' }
 
 export default function ContactoForm() {
   const [submitted, setSubmitted] = useState(false)
@@ -111,7 +113,7 @@ export default function ContactoForm() {
       style={{
         background: 'rgba(255,255,255,0.03)',
         borderColor: 'rgba(255,255,255,0.09)',
-        padding: 'clamp(30px, 4vw, 44px)',
+        padding: 'clamp(36px, 5vw, 56px)',
       }}
       noValidate
     >
@@ -127,15 +129,16 @@ export default function ContactoForm() {
       >
         Pedido de proposta
       </p>
-      <h2 className="font-display font-700 text-white text-[30px] leading-tight mb-10">Dados do pedido</h2>
+      <h2 className="font-display font-700 text-white text-[30px] leading-tight mb-12">Dados do pedido</h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-7 gap-y-6 mb-7">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-8 mb-9">
         <div>
           <label className={labelBase}>Nome completo *</label>
           <input
             {...register('nome')}
             placeholder="O teu nome"
             className={cn(inputBase, errors.nome && 'border-red-500/60')}
+            style={controlStyle}
           />
           {errors.nome && <p className={errorBase}>{errors.nome.message}</p>}
         </div>
@@ -146,6 +149,7 @@ export default function ContactoForm() {
             {...register('empresa')}
             placeholder="Nome da tua empresa"
             className={cn(inputBase, errors.empresa && 'border-red-500/60')}
+            style={controlStyle}
           />
           {errors.empresa && <p className={errorBase}>{errors.empresa.message}</p>}
         </div>
@@ -156,6 +160,7 @@ export default function ContactoForm() {
             {...register('cargo')}
             placeholder="CEO, Director, etc."
             className={cn(inputBase, errors.cargo && 'border-red-500/60')}
+            style={controlStyle}
           />
           {errors.cargo && <p className={errorBase}>{errors.cargo.message}</p>}
         </div>
@@ -167,29 +172,32 @@ export default function ContactoForm() {
             placeholder="+244 9XX XXX XXX"
             type="tel"
             className={cn(inputBase, errors.telefone && 'border-red-500/60')}
+            style={controlStyle}
           />
           {errors.telefone && <p className={errorBase}>{errors.telefone.message}</p>}
         </div>
       </div>
 
-      <div className="mb-7">
+      <div className="mb-9">
         <label className={labelBase}>Email *</label>
         <input
           {...register('email')}
           placeholder="email@empresa.ao"
           type="email"
           className={cn(inputBase, errors.email && 'border-red-500/60')}
+          style={controlStyle}
         />
         {errors.email && <p className={errorBase}>{errors.email.message}</p>}
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-7 gap-y-6 mb-7">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-8 mb-9">
         <div>
           <label className={labelBase}>Facturamento anual *</label>
           <select
             {...register('facturacao')}
             defaultValue=""
             className={cn(inputBase, 'cursor-pointer', errors.facturacao && 'border-red-500/60')}
+            style={controlStyle}
           >
             {facturacaoOptions.map((option) => (
               <option key={option.value} value={option.value} disabled={!option.value}>
@@ -206,6 +214,7 @@ export default function ContactoForm() {
             {...register('servico_interesse')}
             defaultValue=""
             className={cn(inputBase, 'cursor-pointer', errors.servico_interesse && 'border-red-500/60')}
+            style={controlStyle}
           >
             {servicoOptions.map((option) => (
               <option key={option.value} value={option.value} disabled={!option.value}>
@@ -217,12 +226,13 @@ export default function ContactoForm() {
         </div>
       </div>
 
-      <div className="mb-7">
+      <div className="mb-9">
         <label className={labelBase}>Como nos encontrou? *</label>
         <select
           {...register('como_nos_encontrou')}
           defaultValue=""
           className={cn(inputBase, 'cursor-pointer', errors.como_nos_encontrou && 'border-red-500/60')}
+          style={controlStyle}
         >
           {comoEncontrouOptions.map((option) => (
             <option key={option.value} value={option.value} disabled={!option.value}>
@@ -240,6 +250,7 @@ export default function ContactoForm() {
           placeholder="Descreve o principal desafio que queres resolver com a Mazanga..."
           rows={5}
           className={cn(textareaBase, errors.desafio && 'border-red-500/60')}
+          style={textareaStyle}
         />
         {errors.desafio && <p className={errorBase}>{errors.desafio.message}</p>}
       </div>
