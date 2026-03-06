@@ -176,7 +176,7 @@ export default function Navbar() {
               </button>
             </div>
 
-            <nav className="flex flex-col justify-center flex-1 px-6 sm:px-8 gap-2">
+            <nav className="flex flex-col justify-center flex-1 pl-10 pr-6 sm:pl-12 sm:pr-8 gap-2">
               {navLinks.map((link, i) => (
                 <motion.div
                   key={link.href}
@@ -187,7 +187,7 @@ export default function Navbar() {
                   <Link
                     href={link.href}
                     className={cn(
-                      'block font-display font-700 text-3xl sm:text-4xl py-2.5 transition-colors duration-200',
+                      'block font-display font-700 text-[30px] sm:text-[36px] py-2.5 transition-colors duration-200',
                       isActive(link.href)
                         ? 'gradient-text'
                         : 'text-white/90 hover:text-white'
