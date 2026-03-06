@@ -48,11 +48,11 @@ const servicoOptions = [
   { value: 'automacoes', label: 'Automações' },
 ]
 
-const labelBase = 'font-body text-[13px] text-white/60 mb-2 block'
+const labelBase = 'font-body text-[13px] text-white/60 mb-2.5 block'
 const inputBase =
-  'w-full h-[52px] bg-white/[0.02] border border-white/10 rounded-xl px-5 font-body text-[15px] text-white placeholder:text-white/30 focus:outline-none focus:border-brand-orange/55 transition-colors duration-200'
+  'w-full h-[56px] bg-white/[0.02] border border-white/10 rounded-xl px-6 font-body text-[15px] text-white placeholder:text-white/30 focus:outline-none focus:border-brand-orange/55 transition-colors duration-200'
 const textareaBase =
-  'w-full bg-white/[0.02] border border-white/10 rounded-xl px-5 py-4 font-body text-[15px] text-white placeholder:text-white/30 focus:outline-none focus:border-brand-orange/55 transition-colors duration-200 resize-none'
+  'w-full bg-white/[0.02] border border-white/10 rounded-xl px-6 py-4.5 font-body text-[15px] text-white placeholder:text-white/30 focus:outline-none focus:border-brand-orange/55 transition-colors duration-200 resize-none'
 const errorBase = 'font-body text-xs text-red-400 mt-1.5'
 
 export default function ContactoForm() {
@@ -129,7 +129,7 @@ export default function ContactoForm() {
       </p>
       <h2 className="font-display font-700 text-white text-[30px] leading-tight mb-10">Dados do pedido</h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-7 gap-y-6 mb-7">
         <div>
           <label className={labelBase}>Nome completo *</label>
           <input
@@ -172,7 +172,7 @@ export default function ContactoForm() {
         </div>
       </div>
 
-      <div className="mb-6">
+      <div className="mb-7">
         <label className={labelBase}>Email *</label>
         <input
           {...register('email')}
@@ -183,7 +183,7 @@ export default function ContactoForm() {
         {errors.email && <p className={errorBase}>{errors.email.message}</p>}
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-7 gap-y-6 mb-7">
         <div>
           <label className={labelBase}>Facturamento anual *</label>
           <select
@@ -217,7 +217,7 @@ export default function ContactoForm() {
         </div>
       </div>
 
-      <div className="mb-6">
+      <div className="mb-7">
         <label className={labelBase}>Como nos encontrou? *</label>
         <select
           {...register('como_nos_encontrou')}
