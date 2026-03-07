@@ -154,7 +154,7 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 lg:hidden flex flex-col"
+            className="fixed inset-0 z-[70] lg:hidden flex flex-col"
             style={{ background: '#000000' }}
           >
             <div className="flex items-center justify-between h-[72px] px-4 sm:px-6">
@@ -176,7 +176,7 @@ export default function Navbar() {
               </button>
             </div>
 
-            <nav className="flex flex-col justify-center flex-1 pl-10 pr-6 sm:pl-12 sm:pr-8 gap-2">
+            <nav className="flex flex-col justify-center flex-1 pl-14 pr-7 sm:pl-16 sm:pr-10 gap-2">
               {navLinks.map((link, i) => (
                 <motion.div
                   key={link.href}
@@ -187,7 +187,7 @@ export default function Navbar() {
                   <Link
                     href={link.href}
                     className={cn(
-                      'block font-display font-700 text-[30px] sm:text-[36px] py-2.5 transition-colors duration-200',
+                      'block font-display font-700 text-[27px] sm:text-[34px] py-2.5 pl-2 transition-colors duration-200',
                       isActive(link.href)
                         ? 'gradient-text'
                         : 'text-white/90 hover:text-white'
