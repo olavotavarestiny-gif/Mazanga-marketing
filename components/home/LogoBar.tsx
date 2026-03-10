@@ -8,7 +8,6 @@ const logos = [
   { src: '/images/logos/2.png', alt: 'Cliente 2' },
   { src: '/images/logos/3.png', alt: 'Cliente 3' },
   { src: '/images/logos/4.png', alt: 'Cliente 4' },
-  { src: '/images/logos/5.png', alt: 'Cliente 5' },
   { src: '/images/logos/6.png', alt: 'Cliente 6' },
 ]
 
@@ -24,6 +23,19 @@ export default function LogoBar() {
           overflow: 'hidden',
         }}
       >
+        <p
+          style={{
+            textAlign: 'center',
+            fontSize: '14px',
+            color: 'rgba(255,255,255,0.5)',
+            marginBottom: '36px',
+            fontWeight: 500,
+            letterSpacing: '0.5px',
+          }}
+        >
+          Empresas que confiaram em nós
+        </p>
+
         <div
           style={{
             overflow: 'hidden',
