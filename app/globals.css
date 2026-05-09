@@ -317,6 +317,10 @@ body {
 }
 
 @media (max-width: 1023px) {
+  .article-hero-grid {
+    grid-template-columns: 1fr !important;
+  }
+
   .mobile-stack {
     display: grid !important;
     grid-template-columns: 1fr !important;

@@ -11,6 +11,10 @@ export type BlogPost = {
   title: string
   excerpt: string
   readTime: string
+  author: string
+  date: string
+  updatedAt: string
+  coverImage: string
   metadata: {
     title: string
     description: string
@@ -27,6 +31,10 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       'A maioria das empresas investe em anúncios sem saber qual canal trouxe cada cliente. Os parâmetros UTM resolvem isso — e são gratuitos. Descobre como implementar e o que mudará na tua tomada de decisão.',
     readTime: '6 min de leitura',
+    author: 'Mazanga Marketing',
+    date: '2026-01-10T09:00:00.000Z',
+    updatedAt: '2026-03-06T09:00:00.000Z',
+    coverImage: '/images/blog/importancia-utms-rastrear-clientes.webp',
     metadata: {
       title: 'A Importância dos UTMs: Como Rastrear Clientes com Precisão | Mazanga Marketing',
       description:
@@ -120,6 +128,10 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       'Não precisas de analisar centenas de métricas. Existem 5 números que, quando monitorizados diariamente, revelam tudo o que precisas saber sobre a saúde das tuas campanhas.',
     readTime: '5 min de leitura',
+    author: 'Mazanga Marketing',
+    date: '2026-01-17T09:00:00.000Z',
+    updatedAt: '2026-03-06T09:00:00.000Z',
+    coverImage: '/images/blog/como-medir-resultados-marketing-diariamente.webp',
     metadata: {
       title: 'Como Medir Resultados de Marketing Todos os Dias | Mazanga Marketing',
       description:
@@ -203,6 +215,10 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       'Marketing não é custo — é o sistema que multiplica o valor de tudo o que já fazes bem. Vê como empresas comuns se tornam referência de mercado com a estratégia certa.',
     readTime: '4 min de leitura',
+    author: 'Mazanga Marketing',
+    date: '2026-01-24T09:00:00.000Z',
+    updatedAt: '2026-03-06T09:00:00.000Z',
+    coverImage: '/images/og-mazanga.svg',
     metadata: {
       title: 'A Diferença Que o Bom Marketing Faz no Negócio | Mazanga Marketing',
       description:
@@ -281,6 +297,10 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       'Trabalhámos em 5 países. A maior surpresa? O que muda não é a psicologia do cliente — é o canal e a abordagem. Descobre o que adaptámos e o que mantivemos igual.',
     readTime: '7 min de leitura',
+    author: 'Mazanga Marketing',
+    date: '2026-01-31T09:00:00.000Z',
+    updatedAt: '2026-03-06T09:00:00.000Z',
+    coverImage: '/images/blog/marketing-angola-vs-europa-diferencas.webp',
     metadata: {
       title: 'Marketing em Angola vs Europa: Diferenças e Semelhanças | Mazanga Marketing',
       description:
@@ -361,6 +381,10 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       'O empresário angolano carrega um peso enorme — emprega, arrisca e constrói sem os suportes que existem noutros mercados. Este artigo é um reconhecimento e um guia prático.',
     readTime: '5 min de leitura',
+    author: 'Mazanga Marketing',
+    date: '2026-02-07T09:00:00.000Z',
+    updatedAt: '2026-03-06T09:00:00.000Z',
+    coverImage: '/images/blog/importancia-empresarios-angola-economia.webp',
     metadata: {
       title: 'A Importância dos Empresários em Angola | Mazanga Marketing',
       description:
@@ -445,6 +469,10 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       'Angola tem oportunidades reais que poucos aproveitam por falta de informação. Mas também tem obstáculos que podem destruir um negócio mal preparado. Uma análise honesta de quem está no terreno.',
     readTime: '8 min de leitura',
+    author: 'Mazanga Marketing',
+    date: '2026-02-14T09:00:00.000Z',
+    updatedAt: '2026-03-06T09:00:00.000Z',
+    coverImage: '/images/blog/empreender-angola-facilidades-dificuldades.webp',
     metadata: {
       title: 'Empreender em Angola: Guia Completo 2025 | Mazanga Marketing',
       description:

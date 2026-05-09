@@ -34,6 +34,9 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   alternates: {
     canonical: '/',
+    types: {
+      'application/rss+xml': `${SITE_URL}/rss.xml`,
+    },
   },
   applicationName: SITE_NAME,
   category: 'marketing',
@@ -130,6 +133,12 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrg) }}
+        />
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="Mazanga Marketing RSS Feed"
+          href={`${SITE_URL}/rss.xml`}
         />
         <Script id="google-translate-init" strategy="afterInteractive">
           {`

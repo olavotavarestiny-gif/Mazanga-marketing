@@ -1,14 +1,33 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { blogPosts, getBlogPostBySlug } from '@/content/blog-posts'
 import PageGradientBackground from '@/components/layout/PageGradientBackground'
-import { DEFAULT_OG_IMAGE, getBlogDates, SITE_NAME, SITE_URL } from '@/lib/seo'
+import { getBlogDates, SITE_NAME, SITE_URL } from '@/lib/seo'
 
 type PageProps = {
   params: Promise<{
     slug: string
   }>
+}
+
+function formatPostDate(date: string) {
+  return new Intl.DateTimeFormat('pt-AO', {
+    day: '2-digit',
+    month: 'long',
+    year: 'numeric',
+  }).format(new Date(date))
+}
+
+function getPostInitials(title: string) {
+  return title
+    .split(' ')
+    .filter((word) => word.length > 3)
+    .slice(0, 2)
+    .map((word) => word[0])
+    .join('')
+    .toUpperCase()
 }
 
 export function generateStaticParams() {
@@ -29,8 +48,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     }
   }
 
-  const dates = getBlogDates(post.slug)
+  const dates = getBlogDates(post)
   const canonicalPath = `/blog/${post.slug}`
+  const coverImageUrl = `${SITE_URL}${post.coverImage}`
 
   return {
     title: post.metadata.title,
@@ -48,14 +68,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       url: `${SITE_URL}${canonicalPath}`,
       publishedTime: dates.published,
       modifiedTime: dates.updated,
-      authors: ['Mazanga Marketing'],
-      images: [{ url: DEFAULT_OG_IMAGE, width: 1200, height: 630 }],
+      authors: [post.author],
+      images: [{ url: coverImageUrl, width: 1200, height: 630 }],
     },
     twitter: {
       card: 'summary_large_image',
       title: post.metadata.title,
       description: post.metadata.description,
-      images: [DEFAULT_OG_IMAGE],
+      images: [coverImageUrl],
     },
   }
 }
@@ -68,8 +88,9 @@ export default async function BlogPostPage({ params }: PageProps) {
     notFound()
   }
 
-  const dates = getBlogDates(post.slug)
+  const dates = getBlogDates(post)
   const canonicalUrl = `${SITE_URL}/blog/${post.slug}`
+  const coverImageUrl = `${SITE_URL}${post.coverImage}`
   const articleSchema = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
@@ -81,7 +102,7 @@ export default async function BlogPostPage({ params }: PageProps) {
     dateModified: dates.updated,
     author: {
       '@type': 'Organization',
-      name: SITE_NAME,
+      name: post.author,
     },
     publisher: {
       '@type': 'Organization',
@@ -89,6 +110,7 @@ export default async function BlogPostPage({ params }: PageProps) {
       url: SITE_URL,
     },
     mainEntityOfPage: canonicalUrl,
+    image: coverImageUrl,
     keywords: post.metadata.keywords.join(', '),
   }
 
@@ -99,54 +121,159 @@ export default async function BlogPostPage({ params }: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
-      <article className="article-shell">
+      <article className="article-shell" style={{ maxWidth: '980px' }}>
         <Link
           href="/blog"
-          className="font-body block w-fit mb-12 text-[14px] text-white/40 hover:text-white/80 transition-colors"
+          className="font-body block w-fit text-[14px] text-white/45 hover:text-white/85 transition-colors"
+          style={{ marginBottom: 'clamp(32px, 6vw, 58px)' }}
         >
           ← Voltar ao Blog
         </Link>
 
-        <span
-          className="font-display block mb-4"
+        <header
           style={{
-            fontSize: '11px',
-            color: 'rgba(255, 255, 255, 0.3)',
-            letterSpacing: '2px',
-            textTransform: 'uppercase',
+            display: 'grid',
+            gridTemplateColumns: 'minmax(0, 0.9fr) minmax(280px, 0.56fr)',
+            gap: 'clamp(30px, 6vw, 72px)',
+            alignItems: 'end',
+            marginBottom: 'clamp(34px, 6vw, 64px)',
           }}
+          className="article-hero-grid"
         >
-          {post.category}
-        </span>
+          <div>
+            <span
+              className="font-display"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                border: '1px solid rgba(255,255,255,0.12)',
+                borderRadius: '999px',
+                padding: '8px 13px',
+                marginBottom: '22px',
+                fontSize: '10px',
+                color: 'rgba(255,255,255,0.66)',
+                letterSpacing: '2px',
+                textTransform: 'uppercase',
+                background: 'rgba(255,255,255,0.035)',
+              }}
+            >
+              {post.category}
+            </span>
 
-        <h1
-          className="font-display"
-          style={{
-            fontWeight: 700,
-            fontSize: 'clamp(28px, 4vw, 48px)',
-            color: '#FFFFFF',
-            lineHeight: 1.2,
-            marginBottom: '24px',
-          }}
-        >
-          {post.title}
-        </h1>
+            <h1
+              className="font-display"
+              style={{
+                fontWeight: 700,
+                fontSize: 'clamp(34px, 5.4vw, 70px)',
+                color: '#FFFFFF',
+                lineHeight: 1.04,
+                marginBottom: '24px',
+                letterSpacing: 0,
+              }}
+            >
+              {post.title}
+            </h1>
 
-        <div
-          className="font-body"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '20px',
-            flexWrap: 'wrap',
-            fontSize: '13px',
-            color: 'rgba(255, 255, 255, 0.3)',
-            marginBottom: '48px',
-          }}
-        >
-          <span>Mazanga Marketing</span>
-          <span>{post.readTime}</span>
-        </div>
+            <p
+              className="font-body"
+              style={{
+                fontSize: 'clamp(17px, 2vw, 20px)',
+                color: 'rgba(255,255,255,0.58)',
+                lineHeight: 1.75,
+                marginBottom: '26px',
+                maxWidth: '740px',
+              }}
+            >
+              {post.excerpt}
+            </p>
+
+            <div
+              className="font-body"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '12px',
+                flexWrap: 'wrap',
+                fontSize: '13px',
+                color: 'rgba(255, 255, 255, 0.42)',
+              }}
+            >
+              <span>{formatPostDate(post.date)}</span>
+              <span style={{ width: '4px', height: '4px', borderRadius: '999px', background: '#FF5D00' }} />
+              <span>{post.author}</span>
+              <span style={{ width: '4px', height: '4px', borderRadius: '999px', background: '#8C0DC2' }} />
+              <span>{post.readTime}</span>
+            </div>
+          </div>
+
+          <div
+            style={{
+              position: 'relative',
+              overflow: 'hidden',
+              minHeight: 'clamp(260px, 36vw, 420px)',
+              borderRadius: '20px',
+              border: '1px solid rgba(255,255,255,0.1)',
+              background: '#08080A',
+            }}
+          >
+            <Image
+              src={post.coverImage}
+              alt=""
+              aria-hidden="true"
+              fill
+              priority
+              sizes="(max-width: 900px) 100vw, 38vw"
+              style={{
+                objectFit: 'cover',
+                objectPosition: 'center center',
+                opacity: 1,
+              }}
+            />
+            <div
+              style={{
+                position: 'absolute',
+                inset: 0,
+                background:
+                  'linear-gradient(180deg, rgba(0,0,0,0.12), rgba(0,0,0,0.08) 45%, rgba(0,0,0,0.38))',
+              }}
+            />
+            <div
+              style={{
+                position: 'absolute',
+                inset: '28px',
+                zIndex: 1,
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+              }}
+            >
+              <span
+                className="font-display"
+                style={{
+                  alignSelf: 'flex-start',
+                  color: 'rgba(255,255,255,0.7)',
+                  fontSize: '11px',
+                  letterSpacing: '2px',
+                  textTransform: 'uppercase',
+                }}
+              >
+                Artigo
+              </span>
+              <span
+                className="font-display"
+                style={{
+                  color: '#FFFFFF',
+                  fontSize: 'clamp(88px, 13vw, 150px)',
+                  fontWeight: 800,
+                  lineHeight: 0.9,
+                  opacity: 0,
+                }}
+              >
+                {getPostInitials(post.title)}
+              </span>
+            </div>
+          </div>
+        </header>
 
         <div
           style={{
@@ -156,7 +283,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           }}
         />
 
-        <div>
+        <div style={{ maxWidth: '760px', margin: '0 auto' }}>
           {post.blocks.map((block, index) => {
             if (block.type === 'paragraph') {
               return (
@@ -164,10 +291,10 @@ export default async function BlogPostPage({ params }: PageProps) {
                   key={`${post.slug}-${index}`}
                   className="font-body"
                   style={{
-                    fontSize: '17px',
-                    color: 'rgba(255, 255, 255, 0.75)',
-                    lineHeight: 1.9,
-                    marginBottom: '24px',
+                    fontSize: '18px',
+                    color: 'rgba(255, 255, 255, 0.74)',
+                    lineHeight: 1.95,
+                    marginBottom: '26px',
                   }}
                 >
                   {block.text}
@@ -182,10 +309,11 @@ export default async function BlogPostPage({ params }: PageProps) {
                   className="font-display"
                   style={{
                     fontWeight: 700,
-                    fontSize: '26px',
+                    fontSize: 'clamp(27px, 3vw, 34px)',
                     color: '#FFFFFF',
-                    marginTop: '56px',
-                    marginBottom: '20px',
+                    marginTop: '64px',
+                    marginBottom: '22px',
+                    lineHeight: 1.18,
                   }}
                 >
                   {block.text}
@@ -200,7 +328,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                   className="font-display"
                   style={{
                     fontWeight: 700,
-                    fontSize: '20px',
+                    fontSize: '22px',
                     color: 'rgba(255, 255, 255, 0.9)',
                     marginTop: '40px',
                     marginBottom: '16px',
@@ -217,13 +345,14 @@ export default async function BlogPostPage({ params }: PageProps) {
                   key={`${post.slug}-${index}`}
                   className="font-body"
                   style={{
-                    background: 'rgba(255, 93, 0, 0.06)',
+                    background:
+                      'linear-gradient(135deg, rgba(255, 93, 0, 0.1), rgba(140, 13, 194, 0.07))',
                     borderLeft: '3px solid #FF5D00',
                     borderRadius: '0 12px 12px 0',
-                    padding: '20px 24px',
-                    margin: '32px 0',
-                    fontSize: '16px',
-                    color: 'rgba(255, 255, 255, 0.8)',
+                    padding: '22px 26px',
+                    margin: '36px 0',
+                    fontSize: '17px',
+                    color: 'rgba(255, 255, 255, 0.82)',
                     lineHeight: 1.7,
                   }}
                 >
@@ -233,16 +362,16 @@ export default async function BlogPostPage({ params }: PageProps) {
             }
 
             return (
-              <ul key={`${post.slug}-${index}`} style={{ marginBottom: '24px', paddingLeft: '24px' }}>
+              <ul key={`${post.slug}-${index}`} style={{ marginBottom: '28px', paddingLeft: '24px' }}>
                 {block.items.map((item, itemIndex) => (
                   <li
                     key={`${post.slug}-${index}-${itemIndex}`}
                     className="font-body"
                     style={{
-                      fontSize: '16px',
-                      color: 'rgba(255, 255, 255, 0.65)',
+                      fontSize: '17px',
+                      color: 'rgba(255, 255, 255, 0.68)',
                       lineHeight: 1.8,
-                      marginBottom: '8px',
+                      marginBottom: '10px',
                       paddingLeft: '8px',
                     }}
                   >
@@ -262,6 +391,9 @@ export default async function BlogPostPage({ params }: PageProps) {
             padding: 'clamp(24px, 5vw, 48px)',
             textAlign: 'center',
             marginTop: '72px',
+            maxWidth: '760px',
+            marginLeft: 'auto',
+            marginRight: 'auto',
           }}
         >
           <h2

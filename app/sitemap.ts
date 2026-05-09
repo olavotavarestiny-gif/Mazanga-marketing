@@ -55,7 +55,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ]
 
   const blogPages: MetadataRoute.Sitemap = blogPosts.map((post) => {
-    const dates = getBlogDates(post.slug)
+    const dates = getBlogDates(post)
 
     return {
       url: `${SITE_URL}/blog/${post.slug}`,

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Blog from '@/components/home/Blog'
 import PageGradientBackground from '@/components/layout/PageGradientBackground'
 import { blogPosts } from '@/content/blog-posts'
-import { buildPageMetadata, SITE_NAME, SITE_URL } from '@/lib/seo'
+import { buildPageMetadata, getBlogDates, SITE_NAME, SITE_URL } from '@/lib/seo'
 
 export const metadata: Metadata = buildPageMetadata({
   title: 'Blog de Marketing Digital e Negócios em Angola | Mazanga Marketing',
@@ -29,16 +29,23 @@ const blogListSchema = {
     name: SITE_NAME,
     url: SITE_URL,
   },
-  blogPost: blogPosts.map((post) => ({
-    '@type': 'BlogPosting',
-    headline: post.title,
-    url: `${SITE_URL}/blog/${post.slug}`,
-    description: post.excerpt,
-    author: {
-      '@type': 'Organization',
-      name: SITE_NAME,
-    },
-  })),
+  blogPost: blogPosts.map((post) => {
+    const dates = getBlogDates(post)
+
+    return {
+      '@type': 'BlogPosting',
+      headline: post.title,
+      url: `${SITE_URL}/blog/${post.slug}`,
+      description: post.excerpt,
+      datePublished: dates.published,
+      dateModified: dates.updated,
+      image: `${SITE_URL}${post.coverImage}`,
+      author: {
+        '@type': 'Organization',
+        name: post.author,
+      },
+    }
+  }),
 }
 
 export default function BlogPage() {
