@@ -121,6 +121,18 @@ export default function RootLayout({
   return (
     <html lang="pt-AO" className={`${syne.variable} ${outfit.variable}`}>
       <head>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-18169497946"
+          strategy="afterInteractive"
+        />
+        <Script id="google-ads-gtag" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-18169497946');
+          `}
+        </Script>
         <Script id="google-tag-manager" strategy="afterInteractive">
           {`
             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
