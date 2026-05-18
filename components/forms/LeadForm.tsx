@@ -76,6 +76,16 @@ export default function LeadForm() {
     setSubmitWarning(null)
 
     try {
+      const params = new URLSearchParams(
+        typeof window !== 'undefined' ? window.location.search : ''
+      )
+      const utm_source   = params.get('utm_source')   ?? ''
+      const utm_medium   = params.get('utm_medium')   ?? ''
+      const utm_campaign = params.get('utm_campaign') ?? ''
+      const source_url   = typeof window !== 'undefined'
+        ? window.location.origin + window.location.pathname
+        : ''
+
       const response = await fetch('/api/lead', {
         method: 'POST',
         headers: {
@@ -92,6 +102,10 @@ export default function LeadForm() {
           source: data.como_nos_encontrou,
           main_challenge: data.desafio,
           website: data.website ?? '',
+          utm_source,
+          utm_medium,
+          utm_campaign,
+          source_url,
         }),
       })
 
@@ -111,6 +125,14 @@ export default function LeadForm() {
       }
 
       setSubmitted(true)
+
+      if (typeof window !== 'undefined' && typeof (window as any).gtag === 'function') {
+        ;(window as any).gtag('event', 'conversion', {
+          send_to: 'AW-18169497946/Kdz-CNjvpa8cENqS8tdD',
+          value: 1.0,
+          currency: 'USD',
+        })
+      }
     } catch (error) {
       console.error('Lead form submit failed:', error)
       setSubmitError('Erro de ligação. Verifica a internet e tenta novamente.')

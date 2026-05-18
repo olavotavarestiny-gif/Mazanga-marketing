@@ -11,6 +11,11 @@ type LeadPayload = {
   source?: string
   main_challenge?: string
   website?: string
+  utm_source?: string
+  utm_medium?: string
+  utm_campaign?: string
+  source_url?: string
+  submitted_at?: string
 }
 
 type RateLimitEntry = {
@@ -123,6 +128,11 @@ export async function POST(req: NextRequest) {
       service_interest: body.service_interest?.trim(),
       source: body.source?.trim(),
       main_challenge: body.main_challenge?.trim(),
+      submitted_at: new Date().toISOString(),
+      source_url: body.source_url?.trim() ?? '',
+      utm_source: body.utm_source?.trim() ?? '',
+      utm_medium: body.utm_medium?.trim() ?? '',
+      utm_campaign: body.utm_campaign?.trim() ?? '',
     }
 
     const result = await sendLeadToKukugest(leadPayload)
