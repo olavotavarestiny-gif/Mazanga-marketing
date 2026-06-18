@@ -2,12 +2,13 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { Instagram, Linkedin, MessageCircle, Mail } from 'lucide-react'
+import { Instagram, Linkedin, MessageCircle, Mail, MapPin } from 'lucide-react'
 
 const navLinks = [
   { label: 'Problema', href: '#problema' },
   { label: 'Solução', href: '#solucao' },
   { label: 'Serviços', href: '/servicos' },
+  { label: 'Equipa', href: '/equipa' },
   { label: 'Processo', href: '#processo' },
 ]
 
@@ -111,7 +112,10 @@ export default function Footer() {
               Contacto
             </p>
             <div className="flex flex-col" style={{ gap: '12px' }}>
-              <span className="font-body" style={{ fontSize: '14px', color: 'rgba(255,255,255,0.4)' }}>Luanda, Angola</span>
+              <span className="font-body flex items-start gap-2" style={{ fontSize: '14px', color: 'rgba(255,255,255,0.4)', lineHeight: 1.55 }}>
+                <MapPin size={14} style={{ marginTop: '3px', flexShrink: 0 }} />
+                Zango 0, lado oposto da Nossa Casa, ao lado do Arreiou
+              </span>
               <a href="mailto:info@mazanga.digital" className="font-body flex items-center gap-2 transition-colors duration-200" style={{ fontSize: '14px', color: 'rgba(255,255,255,0.4)' }} onMouseEnter={e => { e.currentTarget.style.color = '#FFFFFF' }} onMouseLeave={e => { e.currentTarget.style.color = 'rgba(255,255,255,0.4)' }}>
                 <Mail size={14} />
                 info@mazanga.digital

@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import { CheckCircle, Clock, Mail, MessageCircle } from 'lucide-react'
+import { CheckCircle, Clock, Mail, MapPin, MessageCircle } from 'lucide-react'
 import LeadForm from '@/components/forms/LeadForm'
 import PageGradientBackground from '@/components/layout/PageGradientBackground'
 import { buildPageMetadata } from '@/lib/seo'
@@ -142,6 +142,38 @@ export default function ContactoPage() {
                   <MessageCircle size={16} />
                   WhatsApp Directo
                 </a>
+              </div>
+
+              <div
+                className="rounded-[20px] border relative overflow-hidden"
+                style={{
+                  background:
+                    'linear-gradient(145deg, rgba(255,93,0,0.1), rgba(140,13,194,0.08), rgba(0,143,205,0.06))',
+                  borderColor: 'rgba(255,255,255,0.1)',
+                  padding: '24px 28px',
+                }}
+              >
+                <div
+                  className="absolute pointer-events-none"
+                  style={{
+                    right: '-56px',
+                    top: '-56px',
+                    width: '150px',
+                    height: '150px',
+                    borderRadius: '50%',
+                    background: 'radial-gradient(circle, rgba(255,93,0,0.22), transparent 68%)',
+                    filter: 'blur(24px)',
+                  }}
+                />
+                <div className="relative">
+                  <div className="flex items-center gap-2 mb-3">
+                    <MapPin size={17} className="text-brand-orange" />
+                    <span className="font-display font-700 text-white text-[15px]">Escritório</span>
+                  </div>
+                  <p className="font-body text-[15px] text-white/65 leading-relaxed">
+                    Zango 0, lado oposto da Nossa Casa, ao lado do Arreiou.
+                  </p>
+                </div>
               </div>
 
               <div

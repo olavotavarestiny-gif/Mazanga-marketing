@@ -95,6 +95,7 @@ const schemaOrg = [
     "description": "Sistema completo de aquisição e organização comercial B2B para empresas angolanas.",
     "address": {
       "@type": "PostalAddress",
+      "streetAddress": "Zango 0, lado oposto da Nossa Casa, ao lado do Arreiou",
       "addressLocality": "Luanda",
       "addressCountry": "AO"
     },

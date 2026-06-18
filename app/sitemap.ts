@@ -41,6 +41,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
+      url: `${SITE_URL}/equipa`,
+      lastModified: new Date('2026-06-18T09:00:00.000Z'),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
       url: `${SITE_URL}/carreira`,
       lastModified: new Date('2026-03-06T09:00:00.000Z'),
       changeFrequency: 'monthly',
