@@ -23,6 +23,9 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const pathname = usePathname()
+  const onDiagnosticPage = pathname === '/diagnostico'
+  const diagnosticHref = onDiagnosticPage ? '#formulario-diagnostico' : '/contacto'
+  const diagnosticLabel = onDiagnosticPage ? 'Solicitar diagnóstico' : 'Diagnóstico Gratuito'
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -112,7 +115,7 @@ export default function Navbar() {
             <div className="hidden lg:flex items-center gap-3" style={{ marginLeft: 'auto' }}>
               <LanguageToggle />
               <Link
-                href="/contacto"
+                href={diagnosticHref}
                 className="inline-flex items-center gap-2 font-display font-600 transition-all duration-200"
                 style={{
                   padding: '8px 20px',
@@ -130,7 +133,7 @@ export default function Navbar() {
                   e.currentTarget.style.transform = 'scale(1)'
                 }}
               >
-                Diagnóstico Gratuito
+                {diagnosticLabel}
               </Link>
             </div>
 
@@ -209,7 +212,7 @@ export default function Navbar() {
                   <LanguageToggle />
                 </div>
                 <Link
-                  href="/contacto"
+                  href={diagnosticHref}
                   className="w-full inline-flex items-center justify-center font-display font-600 transition-all duration-200"
                   style={{
                     padding: '14px 32px',
@@ -219,7 +222,7 @@ export default function Navbar() {
                     color: '#FFFFFF',
                   }}
                 >
-                  Diagnóstico Gratuito
+                  {diagnosticLabel}
                 </Link>
               </motion.div>
             </nav>

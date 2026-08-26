@@ -29,6 +29,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: `${SITE_URL}/diagnostico`,
+      lastModified: new Date('2026-08-26T18:00:00.000Z'),
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
       url: `${SITE_URL}/blog`,
       lastModified: new Date('2026-03-06T09:00:00.000Z'),
       changeFrequency: 'weekly',
